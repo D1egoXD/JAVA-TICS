@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema PS 4.27 - Generación de Vector B desde Matriz A</title>
+    <link rel="stylesheet" href="../Styles/style.css">
+    <link rel="stylesheet" href="../Styles/exercises.css">
+    <link rel="stylesheet" href="../Styles/navigation.css">
+    <style>
+        .test-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+        }
+        .test-table th, .test-table td {
+            border: 1px solid var(--color-border);
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .test-table th {
+            background: var(--color-bg);
+            color: var(--color-primary-text);
+        }
+        .test-table tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        .formula {
+            background: #e3f2fd;
+            padding: 10px;
+            border-left: 4px solid #2196F3;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Problema PS 4.27 - Generación de Vector B desde Matriz A</h1>
+        <a href="../index.html" class="nav-button">Volver al Menú Principal</a>
+    </header>
+
+    <div class="exercise-description">
+        <section class="problem-statement">
+            <h3>Enunciado del Problema</h3>
+            <p>
+                Dada una matriz cuadrada A de orden N × N (1 ≤ N ≤ 50), se desea generar un vector B de N elementos 
+                donde cada elemento B[i] se calcula según la siguiente regla basada en el índice i (usando base 1):
+            </p>
+
+            <div class="formula">
+                <strong>Reglas para generar B[i]:</strong><br><br>
+                • Si (i mod 3) = 1: B[i] = Suma de los elementos de la fila i<br>
+                • Si (i mod 3) = 2: B[i] = Producto de los elementos de la columna i<br>
+                • Si (i mod 3) = 0: B[i] = (Producto de la columna i-1) / (Suma de la fila i-2)
+            </div>
+
+            <h3>Datos:</h3>
+            <ul>
+                <li><strong>N:</strong> Orden de la matriz (1 ≤ N ≤ 50)</li>
+                <li><strong>A[N][N]:</strong> Matriz cuadrada de enteros</li>
+            </ul>
+
+            <h3>Explicación de variables:</h3>
+            <ul>
+                <li><strong>A[N][N]:</strong> Matriz cuadrada de entrada con valores enteros.</li>
+                <li><strong>B[N]:</strong> Vector resultante de tipo double (debido a las divisiones).</li>
+                <li><strong>i, j, k:</strong> Variables de control para los ciclos (índices).</li>
+                <li><strong>SUMA:</strong> Variable auxiliar para acumular la suma de una fila.</li>
+                <li><strong>PRODUCTO:</strong> Variable auxiliar para acumular el producto de una columna.</li>
+            </ul>
+        </section>
+
+        <section class="explanation">
+            <h3>💡 Explicación del Algoritmo</h3>
+            <p>
+                Este problema combina operaciones sobre matrices (suma de filas y producto de columnas) 
+                con lógica condicional basada en el módulo del índice.
+            </p>
+            
+            <h3>Proceso:</h3>
+            <ol>
+                <li><strong>Lectura:</strong> Leer N y los N×N elementos de la matriz A</li>
+                <li><strong>Generación del vector B:</strong> Para cada índice i (de 1 a N):
+                    <ul>
+                        <li>Calcular (i mod 3) para determinar qué operación aplicar</li>
+                        <li>Caso 1 (i mod 3 = 1): Sumar todos los elementos de la fila i</li>
+                        <li>Caso 2 (i mod 3 = 2): Multiplicar todos los elementos de la columna i</li>
+                        <li>Caso 3 (i mod 3 = 0): Dividir el producto de la columna i-1 entre la suma de la fila i-2</li>
+                    </ul>
+                </li>
+                <li><strong>Salida:</strong> Imprimir el vector B generado</li>
+            </ol>
+
+            <h3>Ejemplo de ejecución:</h3>
+            <p><strong>Matriz de entrada (N = 3):</strong></p>
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Col 1</th>
+                        <th>Col 2</th>
+                        <th>Col 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fila 1</strong></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fila 2</strong></td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fila 3</strong></td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Cálculo del Vector B:</h4>
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th>i</th>
+                        <th>i mod 3</th>
+                        <th>Operación</th>
+                        <th>Cálculo</th>
+                        <th>B[i]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Suma fila 1</td>
+                        <td>1 + 2 + 3</td>
+                        <td>6.0</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>Producto col 2</td>
+                        <td>2 × 5 × 8</td>
+                        <td>80.0</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>(Prod col 2) / (Suma fila 1)</td>
+                        <td>80 / 6</td>
+                        <td>13.333...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Vector B resultante:</strong> [6.0, 80.0, 13.333...]</p>
+
+            <h4>Otro ejemplo con N = 6:</h4>
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th>i</th>
+                        <th>i mod 3</th>
+                        <th>Operación a realizar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Suma de fila 1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>Producto de columna 2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>(Producto col 2) / (Suma fila 1)</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>Suma de fila 4</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>Producto de columna 5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>0</td>
+                        <td>(Producto col 5) / (Suma fila 4)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 20px 0;">
+                <p><strong>⚠️ Consideración importante:</strong></p>
+                <p>Cuando i mod 3 = 0, se realiza una división. Es importante verificar que el divisor 
+                   (suma de la fila i-2) no sea cero para evitar errores de división por cero.</p>
+            </div>
+        </section>
+
+        <div class="solution-diagram">
+            <h3>📊 Diagrama de Flujo</h3>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_ps_4_27.png" alt="Diagrama de Flujo - PS 4.27" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; padding: 10px; background: white;">
+            </div>
+
+            <p><strong>Nota:</strong> Si el diagrama no se muestra, ejecuta el script de Python para generar los diagramas:</p>
+            <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;"><code>python generate_diagrams.py</code></pre>
+        </div>
+
+        <div class="source-code">
+            <h3>💻 Código Fuente Completo</h3>
+            <div class="code-block">
+                <pre><code>package com.tutortics;
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+/**
+ * Problema PS 4.27 - Generación de Vector B desde Matriz A
+ * Genera un vector B a partir de una matriz cuadrada A aplicando reglas condicionales.
+ */
+public class problema_ps_4_27 {
+
+    /**
+     * Genera un vector B a partir de una matriz A según las reglas del PS 4.27.
+     *
+     * @param a La matriz cuadrada de entrada.
+     * @param n El orden de la matriz.
+     * @return El vector B generado (como un arreglo de doubles).
+     */
+    public double[] generarVectorB(int[][] a, int n) {
+        double[] b = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            int i_uno_basado = i + 1;
+
+            if (i_uno_basado % 3 == 1) {
+                // Caso 1: Suma de la fila i
+                b[i] = sumarFila(a, n, i);
+            } else if (i_uno_basado % 3 == 2) {
+                // Caso 2: Producto de la columna i
+                b[i] = multiplicarColumna(a, n, i);
+            } else { // i_uno_basado % 3 == 0
+                // Caso 3: (Producto de col i-1) / (Suma de fila i-2)
+                long productoColumnaAnterior = multiplicarColumna(a, n, i - 1);
+                long sumaFilaAnteriorAnterior = sumarFila(a, n, i - 2);
+
+                if (sumaFilaAnteriorAnterior == 0) {
+                    System.out.println("Advertencia: División por cero en el índice " + 
+                                       i_uno_basado + ". Asignando 0.");
+                    b[i] = 0;
+                } else {
+                    b[i] = (double) productoColumnaAnterior / sumaFilaAnteriorAnterior;
+                }
+            }
+        }
+        return b;
+    }
+
+    // Helper para sumar los elementos de una fila
+    private long sumarFila(int[][] matriz, int n, int filaIndex) {
+        long suma = 0;
+        for (int k = 0; k < n; k++) {
+            suma += matriz[filaIndex][k];
+        }
+        return suma;
+    }
+
+    // Helper para multiplicar los elementos de una columna
+    private long multiplicarColumna(int[][] matriz, int n, int colIndex) {
+        long producto = 1;
+        for (int k = 0; k < n; k++) {
+            producto *= matriz[k][colIndex];
+        }
+        return producto;
+    }
+
+    /**
+     * Método principal para la interacción con el usuario.
+     */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        problema_ps_4_27 problema = new problema_ps_4_27();
+
+        // a) Lea la matriz A
+        System.out.println("Ingrese el orden de la matriz (N) [1-50]:");
+        int n = scanner.nextInt();
+
+        if (n >= 1 && n <= 50) {
+            int[][] matrizA = new int[n][n];
+            System.out.println("Ingrese los elementos de la matriz " + n + "x" + n + ":");
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    matrizA[i][j] = scanner.nextInt();
+                }
+            }
+
+            // b) Genere el vector B
+            double[] vectorB = problema.generarVectorB(matrizA, n);
+
+            // c) Escriba el vector B
+            System.out.println("\n=========================================");
+            System.out.println("El vector B generado es:");
+            System.out.println(Arrays.toString(vectorB));
+            System.out.println("=========================================");
+
+        } else {
+            System.out.println("Error: N debe estar entre 1 y 50.");
+        }
+        scanner.close();
+    }
+}</code></pre>
+            </div>
+
+            <h4 style="margin-top: 30px;">Archivo Esqueleto para Estudiantes</h4>
+            <p>Este archivo contiene la estructura básica sin la lógica implementada, para que el estudiante la complete:</p>
+            <p><strong>Archivo:</strong> <code>src/main/java/com/tutortics/problema_ps_4_27_Estudiante.java</code></p>
+            <div style="background: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 20px 0;">
+                <p><strong>💡 Actividad para el estudiante:</strong></p>
+                <p>Completa los métodos marcados con <code>// TODO</code> en el archivo <code>problema_ps_4_27_Estudiante.java</code></p>
+                <p><strong>Pistas:</strong></p>
+                <ul>
+                    <li>Recorre el vector B desde i = 1 hasta i = N</li>
+                    <li>Calcula (i mod 3) para determinar qué operación realizar</li>
+                    <li>Para sumar una fila: recorre todas las columnas de esa fila</li>
+                    <li>Para multiplicar una columna: recorre todas las filas de esa columna</li>
+                    <li>Verifica que el divisor no sea cero antes de dividir</li>
+                    <li>Recuerda ajustar los índices entre base 1 (enunciado) y base 0 (Java)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="test-results">
+            <h3>Resultados de las Pruebas</h3>
+            <p>El archivo <code>problema_ps_4_27_test.java</code> contiene pruebas unitarias que verifican:</p>
+            <ul>
+                <li>Generación correcta del vector B con matriz 3×3</li>
+                <li>Manejo de división por cero cuando la suma de una fila es 0</li>
+                <li>Verificación de las tres operaciones (suma de fila, producto de columna, división)</li>
+            </ul>
+            
+            <h4>Casos de prueba:</h4>
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Matriz</th>
+                        <th>Vector B esperado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Test 1</td>
+                        <td>[[1,2,3], [4,5,6], [7,8,9]]</td>
+                        <td>[6.0, 80.0, 13.333...]</td>
+                    </tr>
+                    <tr>
+                        <td>Test 2 (división por cero)</td>
+                        <td>[[-1,0,1], [4,5,6], [7,8,9]]</td>
+                        <td>[0.0, 0.0, 0.0]</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>Para ejecutar las pruebas:</p>
+            <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;"><code>mvn test -Dtest=problema_ps_4_27_test</code></pre>
+        </div>
+    </div>
+</div>
+</body>
+</html>

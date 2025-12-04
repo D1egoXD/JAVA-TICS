@@ -1,0 +1,110 @@
+digraph problema_ps_4_27 {
+    // Configuración general
+    rankdir=TB;
+    node [shape=box, style="rounded,filled", fillcolor=lightblue, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Nodos
+    inicio [label="INICIO", shape=ellipse, fillcolor=lightgreen];
+    leer_n [label="Leer N\n(1 ≤ N ≤ 50)"];
+    validar_n [label="N ≥ 1\nY\nN ≤ 50?", shape=diamond, fillcolor=lightyellow];
+    error_n [label="Escribir:\n'Error: N debe estar\nentre 1 y 50'"];
+    
+    // Lectura de la matriz
+    init_lectura [label="i ← 1"];
+    cond_lectura_i [label="i ≤ N?", shape=diamond, fillcolor=lightyellow];
+    init_lectura_j [label="j ← 1"];
+    cond_lectura_j [label="j ≤ N?", shape=diamond, fillcolor=lightyellow];
+    leer_elemento [label="Leer A[i,j]"];
+    inc_j [label="j ← j + 1"];
+    inc_i_lectura [label="i ← i + 1"];
+    
+    // Generación del vector B
+    init_gen_b [label="i ← 1"];
+    cond_gen_b [label="i ≤ N?", shape=diamond, fillcolor=lightyellow];
+    
+    // Calcular i mod 3
+    calc_mod [label="RESTO ← i mod 3"];
+    check_mod [label="RESTO = ?", shape=diamond, fillcolor=lightyellow];
+    
+    // Caso 1: Suma de fila (mod = 1)
+    caso1_init [label="SUMA ← 0\nk ← 1", fillcolor=lightcyan];
+    caso1_cond [label="k ≤ N?", shape=diamond, fillcolor=lightyellow];
+    caso1_suma [label="SUMA ← SUMA + A[i,k]", fillcolor=lightcyan];
+    caso1_inc [label="k ← k + 1", fillcolor=lightcyan];
+    caso1_asignar [label="B[i] ← SUMA", fillcolor=lightcyan];
+    
+    // Caso 2: Producto de columna (mod = 2)
+    caso2_init [label="PRODUCTO ← 1\nk ← 1", fillcolor=lightpink];
+    caso2_cond [label="k ≤ N?", shape=diamond, fillcolor=lightyellow];
+    caso2_prod [label="PRODUCTO ← PRODUCTO × A[k,i]", fillcolor=lightpink];
+    caso2_inc [label="k ← k + 1", fillcolor=lightpink];
+    caso2_asignar [label="B[i] ← PRODUCTO", fillcolor=lightpink];
+    
+    // Caso 3: División (mod = 0)
+    caso3_prod_col [label="PROD_COL ←\nProducto columna (i-1)", fillcolor=lightsalmon];
+    caso3_suma_fila [label="SUMA_FILA ←\nSuma fila (i-2)", fillcolor=lightsalmon];
+    caso3_check_div [label="SUMA_FILA\n= 0?", shape=diamond, fillcolor=lightyellow];
+    caso3_div_cero [label="B[i] ← 0\nEscribir advertencia", fillcolor=lightsalmon];
+    caso3_division [label="B[i] ← PROD_COL / SUMA_FILA", fillcolor=lightsalmon];
+    
+    // Incremento y salida
+    inc_i_gen [label="i ← i + 1"];
+    escribir_b [label="Escribir Vector B"];
+    fin [label="FIN", shape=ellipse, fillcolor=lightcoral];
+    
+    // Flujo principal
+    inicio -> leer_n;
+    leer_n -> validar_n;
+    validar_n -> error_n [label="No"];
+    validar_n -> init_lectura [label="Sí"];
+    error_n -> fin;
+    
+    // Lectura de matriz
+    init_lectura -> cond_lectura_i;
+    cond_lectura_i -> init_gen_b [label="No"];
+    cond_lectura_i -> init_lectura_j [label="Sí"];
+    init_lectura_j -> cond_lectura_j;
+    cond_lectura_j -> inc_i_lectura [label="No"];
+    cond_lectura_j -> leer_elemento [label="Sí"];
+    leer_elemento -> inc_j;
+    inc_j -> cond_lectura_j;
+    inc_i_lectura -> cond_lectura_i;
+    
+    // Generación de vector B
+    init_gen_b -> cond_gen_b;
+    cond_gen_b -> escribir_b [label="No"];
+    cond_gen_b -> calc_mod [label="Sí"];
+    calc_mod -> check_mod;
+    
+    // Caso 1 (mod = 1)
+    check_mod -> caso1_init [label="1"];
+    caso1_init -> caso1_cond;
+    caso1_cond -> caso1_asignar [label="No"];
+    caso1_cond -> caso1_suma [label="Sí"];
+    caso1_suma -> caso1_inc;
+    caso1_inc -> caso1_cond;
+    caso1_asignar -> inc_i_gen;
+    
+    // Caso 2 (mod = 2)
+    check_mod -> caso2_init [label="2"];
+    caso2_init -> caso2_cond;
+    caso2_cond -> caso2_asignar [label="No"];
+    caso2_cond -> caso2_prod [label="Sí"];
+    caso2_prod -> caso2_inc;
+    caso2_inc -> caso2_cond;
+    caso2_asignar -> inc_i_gen;
+    
+    // Caso 3 (mod = 0)
+    check_mod -> caso3_prod_col [label="0"];
+    caso3_prod_col -> caso3_suma_fila;
+    caso3_suma_fila -> caso3_check_div;
+    caso3_check_div -> caso3_div_cero [label="Sí"];
+    caso3_check_div -> caso3_division [label="No"];
+    caso3_div_cero -> inc_i_gen;
+    caso3_division -> inc_i_gen;
+    
+    // Continuación
+    inc_i_gen -> cond_gen_b;
+    escribir_b -> fin;
+}
