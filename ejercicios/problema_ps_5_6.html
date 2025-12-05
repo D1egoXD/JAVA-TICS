@@ -1,363 +1,215 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Problema PS 5.6 - Registros de Profesores</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación Modular - Ejercicios Java</title>
     <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <style>
+        .exercises-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--color-bg-sidebar);
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .exercises-nav a {
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid var(--color-bg-example);
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .exercises-nav a:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        .exercises-nav a.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 32px 24px;
+            background: linear-gradient(135deg, var(--color-bg-sidebar) 0%, var(--color-bg-card) 100%);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 24px;
+        }
+        
+        .hero-section h1 {
+            font-size: 1.75rem;
+            margin-bottom: 8px;
+            color: var(--color-primary);
+        }
+        
+        .hero-section p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .requirements-list {
+            background: var(--color-bg-example);
+            padding: 20px;
+            border-radius: var(--border-radius-md);
+            margin: 20px 0;
+        }
+        
+        .requirements-list h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+        
+        .requirements-list ul {
+            margin-bottom: 0;
+        }
+        
+        .example-section {
+            background: var(--color-bg-sidebar);
+            padding: 20px;
+            border-radius: var(--border-radius-md);
+            margin: 20px 0;
+        }
+        
+        .example-section h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+        
+        .notes-section {
+            background: #fff4e6;
+            border-left: 4px solid var(--color-code-inline);
+            padding: 16px 20px;
+            border-radius: var(--border-radius-sm);
+            margin: 20px 0;
+        }
+        
+        .notes-section h3 {
+            margin-top: 0;
+            color: var(--color-code-inline);
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-    <header>
-        <h1>Problema PS 5.6 - Registros de Profesores</h1>
-        <a href="../index.html" class="nav-button">Volver al Menú Principal</a>
-    </header>
+    <div class="hero-section">
+        <h1>Ejercicios de Programación Estructurada en Java</h1>
+        <p>Selecciona un ejercicio del menú para ver los detalles.</p>
+    </div>
 
-    <div class="exercise-description">
-        <div class="problem-statement">
-            <h3>Enunciado del Problema</h3>
-            <p>El departamento de personal de una escuela tiene registros del nombre, sexo y edad de cada uno de los profesores adscritos al mismo.</p>
-            
-            <p>Escriba un programa que calcule e imprima lo siguiente:</p>
-            <ol type="a">
-                <li>Edad promedio del grupo de profesores.</li>
-                <li>Nombre del profesor más joven del grupo.</li>
-                <li>Nombre del profesor de más edad.</li>
-                <li>Número de profesoras con edad mayor al promedio.</li>
-                <li>Número de profesores con edad menor al promedio.</li>
-            </ol>
-            
-            <p><strong>Datos:</strong> PERSONAL[1..N] (arreglo unidimensional de registros. NOMBRE es un campo del registro de tipo cadena de caracteres. EDAD es un campo del registro de tipo entero. SEXO es otro campo del registro de tipo carácter. Se ingresa "F" si es mujer y "M" si es hombre, 1 ≤ N ≤ 100).</p>
+    <nav class="exercises-nav">
+        <a href='ejemplo_1_13.html'>Ej 1.13</a>
+        <a href='ejemplo_2_5.html'>Ej 2.5</a>
+        <a href='ejemplo_4_3.html'>Ej 4.3</a>
+        <a href='ejemplo_4_7.html'>Ej 4.7</a>
+        <a href='problema_2_9.html'>Prob 2.9</a>
+        <a href='problema_3_6.html'>Prob 3.6</a>
+        <a href='problema_4_22.html'>Prob 4.22</a>
+        <a href='problema_ps_1_6.html'>PS 1.6</a>
+        <a href='problema_ps_3_1.html'>PS 3.1</a>
+        <a href='problema_ps_3_2.html'>PS 3.2</a>
+        <a href='problema_ps_3_3.html'>PS 3.3</a>
+        <a href='problema_ps_3_39.html'>PS 3.39</a>
+        <a href='problema_ps_3_4.html'>PS 3.4</a>
+        <a href='problema_ps_3_5.html'>PS 3.5</a>
+        <a href='problema_ps_4_11.html'>PS 4.11</a>
+        <a href='problema_ps_4_27.html'>PS 4.27</a>
+        <a href='problema_ps_5_6.html'>PS 5.6</a>
+
+    </nav>
+
+    <div class="exercise-card">
+        <div class="exercise-header">
+            <span class="exercise-badge">PS 5.6</span>
+            <h2>Programación Modular</h2>
         </div>
 
-        <div class="explanation">
-            <h3>Explicación de las Variables</h3>
+        <div class="exercise-description">
+            <p>Aprenderás a descomponer problemas complejos en subprogramas reutilizables. Practicarás el diseño modular, el paso de parámetros, valores de retorno y la organización de código en funciones bien definidas.</p>
+        </div>
+
+        <div class="requirements-list">
+            <h3>Requisitos</h3>
             <ul>
-                <li><strong>N:</strong> Variable de tipo entero. Número de profesores (entre 1 y 100).</li>
-                <li><strong>PERSONAL:</strong> Arreglo de registros (objetos Profesor). Cada elemento contiene:
-                    <ul>
-                        <li><strong>NOMBRE:</strong> Cadena de caracteres con el nombre del profesor</li>
-                        <li><strong>EDAD:</strong> Entero con la edad del profesor</li>
-                        <li><strong>SEXO:</strong> Carácter ('F' para femenino, 'M' para masculino)</li>
-                    </ul>
-                </li>
-                <li><strong>SUMA_EDADES:</strong> Variable de tipo entero. Acumulador para calcular el promedio.</li>
-                <li><strong>PROMEDIO:</strong> Variable de tipo real (double). Edad promedio del grupo.</li>
-                <li><strong>MAS_JOVEN:</strong> Variable de tipo entero. Índice del profesor más joven.</li>
-                <li><strong>MAS_VIEJO:</strong> Variable de tipo entero. Índice del profesor de mayor edad.</li>
-                <li><strong>CONT_F_MAYOR:</strong> Variable de tipo entero. Contador de profesoras mayores al promedio.</li>
-                <li><strong>CONT_M_MENOR:</strong> Variable de tipo entero. Contador de profesores menores al promedio.</li>
-            </ul>
+                <li>Identificar tareas repetitivas y crear funciones para ellas</li>
+                <li>Implementar funciones con parámetros y valores de retorno apropiados</li>
+                <li>Implementar procedimientos (void) para tareas sin retorno</li>
+                <li>Usar convenciones de nombres descriptivos para funciones</li>
+                <li>Documentar funciones con comentarios JavaDoc</li>
+                <li>Llamar funciones desde main y otros métodos</li>
 
-            <h3>Algoritmo del Programa</h3>
-            <ol>
-                <li><strong>Leer datos:</strong> Leer N y los datos de cada profesor (nombre, edad, sexo)</li>
-                <li><strong>Calcular promedio:</strong> Sumar todas las edades y dividir entre N</li>
-                <li><strong>Buscar más joven:</strong> Recorrer el arreglo para encontrar la edad mínima</li>
-                <li><strong>Buscar más viejo:</strong> Recorrer el arreglo para encontrar la edad máxima</li>
-                <li><strong>Contar profesoras mayores:</strong> Contar cuántas tienen sexo='F' y edad > promedio</li>
-                <li><strong>Contar profesores menores:</strong> Contar cuántos tienen sexo='M' y edad < promedio</li>
-            </ol>
+            </ul>
         </div>
 
-        <div class="solution-diagram">
-            <h3>Diagrama de Flujo</h3>
+        <div class="example-section">
+            <h3>Ejemplo de uso esperado</h3>
+            <pre class="code-block">// Funciones modulares:
+public static int sumar(int a, int b) {
+    return a + b;
+}
+
+public static void mostrarResultado(int res) {
+    System.out.println(&quot;Resultado: &quot; + res);
+}
+
+// Uso:
+int resultado = sumar(5, 3);
+mostrarResultado(resultado);</pre>
+        </div>
+
+        <div class="notes-section">
+            <h3>Notas rápidas</h3>
+            <p>Asegúrate de:</p>
+            <ul>
+                <li>Función: retorna un valor, Procedimiento: no retorna (void)</li>
+                <li>Parámetros por valor: Java pasa copias de primitivos</li>
+                <li>Usa nombres verbales para funciones: <code>calcular</code>, <code>obtener</code></li>
+                <li><strong>Tip:</strong> Mantén funciones pequeñas y con un solo propósito</li>
+
+            </ul>
+        </div>
+
+        <div class="requirements-list">
+            <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_5_6.png" alt="Diagrama de Flujo - PS 5.6" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; padding: 10px; background: white;">
+                <img src="../images/problema_ps_5_6.png" alt="Diagrama de Flujo - Programación Modular" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
-            <p><em>El diagrama muestra el procesamiento de registros de profesores.</em></p>
-            <p><strong>Nota:</strong> Si el diagrama no se muestra, ejecuta el script de Python para generar los diagramas:</p>
-            <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;"><code>python generate_diagrams.py</code></pre>
-        </div>
-
-        <div class="test-cases">
-            <h3>Ejemplo de Ejecución</h3>
-            
-            <h4>Entrada de Datos</h4>
-            <p>N = 4 profesores:</p>
-            <table class="test-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Edad</th>
-                        <th>Sexo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Ana</td>
-                        <td>45</td>
-                        <td>F</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Luis</td>
-                        <td>30</td>
-                        <td>M</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Elena</td>
-                        <td>50</td>
-                        <td>F</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Carlos</td>
-                        <td>25</td>
-                        <td>M</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h4>Proceso de Cálculo</h4>
-            <p><strong>a) Edad promedio:</strong></p>
-            <ul>
-                <li>SUMA_EDADES = 45 + 30 + 50 + 25 = 150</li>
-                <li>PROMEDIO = 150 / 4 = 37.5 años</li>
-            </ul>
-
-            <p><strong>b) Profesor más joven:</strong></p>
-            <ul>
-                <li>Recorremos: Ana(45), Luis(30), Elena(50), Carlos(25)</li>
-                <li>Edad mínima: 25 años</li>
-                <li>Resultado: <strong>Carlos</strong></li>
-            </ul>
-
-            <p><strong>c) Profesor de más edad:</strong></p>
-            <ul>
-                <li>Recorremos: Ana(45), Luis(30), Elena(50), Carlos(25)</li>
-                <li>Edad máxima: 50 años</li>
-                <li>Resultado: <strong>Elena</strong></li>
-            </ul>
-
-            <p><strong>d) Profesoras con edad > promedio (37.5):</strong></p>
-            <ul>
-                <li>Ana: F, 45 > 37.5 ✓</li>
-                <li>Elena: F, 50 > 37.5 ✓</li>
-                <li>Resultado: <strong>2 profesoras</strong></li>
-            </ul>
-
-            <p><strong>e) Profesores con edad < promedio (37.5):</strong></p>
-            <ul>
-                <li>Luis: M, 30 < 37.5 ✓</li>
-                <li>Carlos: M, 25 < 37.5 ✓</li>
-                <li>Resultado: <strong>2 profesores</strong></li>
-            </ul>
-        </div>
-
-        <div class="trace-table">
-            <h3>Tabla de Traza - Cálculo de Promedio</h3>
-            <table class="test-table">
-                <thead>
-                    <tr>
-                        <th>I</th>
-                        <th>Profesor</th>
-                        <th>Edad</th>
-                        <th>SUMA_EDADES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ana</td>
-                        <td>45</td>
-                        <td>45</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Luis</td>
-                        <td>30</td>
-                        <td>75</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Elena</td>
-                        <td>50</td>
-                        <td>125</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Carlos</td>
-                        <td>25</td>
-                        <td>150</td>
-                    </tr>
-                    <tr style="background: #fffacd;">
-                        <td colspan="3"><strong>PROMEDIO = SUMA_EDADES / N</strong></td>
-                        <td><strong>150 / 4 = 37.5</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="code-implementation">
-            <h3>Implementación en Java (Programación Estructurada)</h3>
-            
-            <h4>Clase Profesor (Registro)</h4>
-            <pre><code>package com.tutortics;
-
-public class Profesor {
-    public String nombre;
-    public int edad;
-    public char sexo; // 'F' para mujer, 'M' para hombre
-
-    public Profesor(String nombre, int edad, char sexo) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.sexo = sexo;
-    }
-}</code></pre>
-
-            <h4>Clase Principal</h4>
-            <pre><code>package com.tutortics;
-
-import java.util.Scanner;
-
-public class problema_ps_5_6 {
-
-    // a) Edad promedio del grupo
-    public static double calcularEdadPromedio(Profesor[] personal) {
-        if (personal.length == 0) return 0;
-        double sumaEdades = 0;
-        for (Profesor p : personal) {
-            sumaEdades += p.edad;
-        }
-        return sumaEdades / personal.length;
-    }
-
-    // b) Nombre del profesor más joven
-    public static String encontrarProfesorMasJoven(Profesor[] personal) {
-        if (personal.length == 0) return "N/A";
-        Profesor masJoven = personal[0];
-        for (int i = 1; i &lt; personal.length; i++) {
-            if (personal[i].edad &lt; masJoven.edad) {
-                masJoven = personal[i];
-            }
-        }
-        return masJoven.nombre;
-    }
-
-    // c) Nombre del profesor de más edad
-    public static String encontrarProfesorMasViejo(Profesor[] personal) {
-        if (personal.length == 0) return "N/A";
-        Profesor masViejo = personal[0];
-        for (int i = 1; i &lt; personal.length; i++) {
-            if (personal[i].edad &gt; masViejo.edad) {
-                masViejo = personal[i];
-            }
-        }
-        return masViejo.nombre;
-    }
-
-    // d) Número de profesoras con edad mayor al promedio
-    public static int contarProfesorasMayoresAlPromedio(Profesor[] personal, double promedio) {
-        int contador = 0;
-        for (Profesor p : personal) {
-            if (p.sexo == 'F' &amp;&amp; p.edad &gt; promedio) {
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-    // e) Número de profesores con edad menor al promedio
-    public static int contarProfesoresMenoresAlPromedio(Profesor[] personal, double promedio) {
-        int contador = 0;
-        for (Profesor p : personal) {
-            if (p.sexo == 'M' &amp;&amp; p.edad &lt; promedio) {
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Ingrese el número de profesores (N) [1-100]:");
-        int n = scanner.nextInt();
-        scanner.nextLine();
-
-        if (n &gt;= 1 &amp;&amp; n &lt;= 100) {
-            Profesor[] personal = new Profesor[n];
-
-            for (int i = 0; i &lt; n; i++) {
-                System.out.println("\\n--- Profesor #" + (i + 1) + " ---");
-                System.out.print("Nombre: ");
-                String nombre = scanner.nextLine();
-                System.out.print("Edad: ");
-                int edad = scanner.nextInt();
-                System.out.print("Sexo (F/M): ");
-                char sexo = scanner.next().charAt(0);
-                scanner.nextLine();
-                personal[i] = new Profesor(nombre, edad, sexo);
-            }
-            
-            double edadPromedio = calcularEdadPromedio(personal);
-            String nombreMasJoven = encontrarProfesorMasJoven(personal);
-            String nombreMasViejo = encontrarProfesorMasViejo(personal);
-            int numProfesoras = contarProfesorasMayoresAlPromedio(personal, edadPromedio);
-            int numProfesores = contarProfesoresMenoresAlPromedio(personal, edadPromedio);
-
-            System.out.println("\\n============ RESULTADOS ============");
-            System.out.printf("a) Edad promedio: %.2f años%n", edadPromedio);
-            System.out.println("b) Más joven: " + nombreMasJoven);
-            System.out.println("c) Más viejo: " + nombreMasViejo);
-            System.out.println("d) Profesoras > promedio: " + numProfesoras);
-            System.out.println("e) Profesores &lt; promedio: " + numProfesores);
-        }
-        scanner.close();
-    }
-}</code></pre>
-        </div>
-
-        <div class="student-activities">
-            <h3>Actividades para el Estudiante</h3>
-            <p><strong>Archivo:</strong> <code>problema_ps_5_6_Estudiante.java</code></p>
-            <p>Completa los métodos marcados con <code>// TODO</code>:</p>
-            <ol>
-                <li><strong>calcularEdadPromedio:</strong> Suma las edades y divide entre N</li>
-                <li><strong>encontrarProfesorMasJoven:</strong> Busca el de menor edad</li>
-                <li><strong>encontrarProfesorMasViejo:</strong> Busca el de mayor edad</li>
-                <li><strong>contarProfesorasMayoresAlPromedio:</strong> Cuenta F con edad > promedio</li>
-                <li><strong>contarProfesoresMenoresAlPromedio:</strong> Cuenta M con edad < promedio</li>
-            </ol>
-            
-            <h4>Preguntas de Reflexión:</h4>
-            <ul>
-                <li>¿Por qué necesitamos calcular el promedio antes de los incisos d) y e)?</li>
-                <li>¿Qué sucede si hay dos profesores con la misma edad mínima?</li>
-                <li>¿Por qué usamos <code>char</code> para el sexo en lugar de <code>String</code>?</li>
-                <li>¿Cómo cambiaría el algoritmo si queremos nombres de TODOS los más jóvenes?</li>
-            </ul>
-        </div>
-
-        <div class="unit-tests">
-            <h3>Tests Unitarios</h3>
-            <p>El archivo <code>problema_ps_5_6_test.java</code> contiene pruebas automáticas que verifican:</p>
-            <ul>
-                <li>✓ Cálculo correcto del promedio de edades</li>
-                <li>✓ Identificación del profesor más joven</li>
-                <li>✓ Identificación del profesor de mayor edad</li>
-                <li>✓ Conteo de profesoras mayores al promedio</li>
-                <li>✓ Conteo de profesores menores al promedio</li>
-            </ul>
-            
-            <p style="background: #fff9c4; padding: 15px; border-left: 4px solid #fbc02d; margin: 15px 0;">
-                <strong>Concepto Clave:</strong> Este problema ilustra el uso de arreglos de registros (objetos), 
-                donde cada elemento del arreglo contiene múltiples campos. Es fundamental recorrer el arreglo 
-                múltiples veces para calcular diferentes estadísticas sobre los datos.
+            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
+                <em>Diagrama de flujo del algoritmo</em>
             </p>
         </div>
+
+        <div class="page-footer">
+            <a href="../index.html">← Volver al Menú Principal</a>
+        </div>
     </div>
+
 </div>
+
+<script>
+    // Marcar el ejercicio actual como activo
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.exercises-nav a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

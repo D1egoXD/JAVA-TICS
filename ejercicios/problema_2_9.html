@@ -1,203 +1,216 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Problema 2.9 - Cálculo de Impuestos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descuento en Tienda - Ejercicios Java</title>
     <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <style>
+        .exercises-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--color-bg-sidebar);
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .exercises-nav a {
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid var(--color-bg-example);
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .exercises-nav a:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        .exercises-nav a.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 32px 24px;
+            background: linear-gradient(135deg, var(--color-bg-sidebar) 0%, var(--color-bg-card) 100%);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 24px;
+        }
+        
+        .hero-section h1 {
+            font-size: 1.75rem;
+            margin-bottom: 8px;
+            color: var(--color-primary);
+        }
+        
+        .hero-section p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .requirements-list {
+            background: var(--color-bg-example);
+            padding: 20px;
+            border-radius: var(--border-radius-md);
+            margin: 20px 0;
+        }
+        
+        .requirements-list h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+        
+        .requirements-list ul {
+            margin-bottom: 0;
+        }
+        
+        .example-section {
+            background: var(--color-bg-sidebar);
+            padding: 20px;
+            border-radius: var(--border-radius-md);
+            margin: 20px 0;
+        }
+        
+        .example-section h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+        
+        .notes-section {
+            background: #fff4e6;
+            border-left: 4px solid var(--color-code-inline);
+            padding: 16px 20px;
+            border-radius: var(--border-radius-sm);
+            margin: 20px 0;
+        }
+        
+        .notes-section h3 {
+            margin-top: 0;
+            color: var(--color-code-inline);
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-    <header>
-        <h1>Problema 2.9 - Cálculo de Impuestos</h1>
-        <a href="../index.html" class="nav-button">Volver al Menú Principal</a>
-    </header>
+    <div class="hero-section">
+        <h1>Ejercicios de Programación Estructurada en Java</h1>
+        <p>Selecciona un ejercicio del menú para ver los detalles.</p>
+    </div>
 
-    <div class="exercise-description">
-        <div class="problem-statement">
-            <h3>Enunciado del Problema</h3>
-            <p>En un cierto país el impuesto que se debe pagar por los artículos se calcula mediante la siguiente regla:</p>
+    <nav class="exercises-nav">
+        <a href='ejemplo_1_13.html'>Ej 1.13</a>
+        <a href='ejemplo_2_5.html'>Ej 2.5</a>
+        <a href='ejemplo_4_3.html'>Ej 4.3</a>
+        <a href='ejemplo_4_7.html'>Ej 4.7</a>
+        <a href='problema_2_9.html'>Prob 2.9</a>
+        <a href='problema_3_6.html'>Prob 3.6</a>
+        <a href='problema_4_22.html'>Prob 4.22</a>
+        <a href='problema_ps_1_6.html'>PS 1.6</a>
+        <a href='problema_ps_3_1.html'>PS 3.1</a>
+        <a href='problema_ps_3_2.html'>PS 3.2</a>
+        <a href='problema_ps_3_3.html'>PS 3.3</a>
+        <a href='problema_ps_3_39.html'>PS 3.39</a>
+        <a href='problema_ps_3_4.html'>PS 3.4</a>
+        <a href='problema_ps_3_5.html'>PS 3.5</a>
+        <a href='problema_ps_4_11.html'>PS 4.11</a>
+        <a href='problema_ps_4_27.html'>PS 4.27</a>
+        <a href='problema_ps_5_6.html'>PS 5.6</a>
+
+    </nav>
+
+    <div class="exercise-card">
+        <div class="exercise-header">
+            <span class="exercise-badge">Problema 2.9</span>
+            <h2>Descuento en Tienda</h2>
+        </div>
+
+        <div class="exercise-description">
+            <p>Aprenderás a implementar lógica de negocio utilizando estructuras condicionales anidadas. Practicarás el cálculo de porcentajes, la toma de decisiones basada en múltiples criterios y la aplicación de reglas de negocio reales.</p>
+        </div>
+
+        <div class="requirements-list">
+            <h3>Requisitos</h3>
             <ul>
-                <li>Los primeros $20 no causan impuesto</li>
-                <li>Los siguientes $20 tienen el 30% de impuesto</li>
-                <li>El resto tiene el 40% de impuesto</li>
-                <li>Si el costo del producto es mayor a $500, entonces en lugar del 40% se cobra el 50%</li>
-            </ul>
-            <p>Diseñe un diagrama de flujo que lea el costo básico de un artículo y calcule su precio total (precio total = precio básico + impuesto).</p>
-        </div>
-
-        <div class="explanation">
-            <h3>Explicación de las Variables</h3>
-            <ul>
-                <li><strong>PREBAS:</strong> Variable de tipo real. Representa el precio básico del producto que se ingresa.</li>
-                <li><strong>IMP:</strong> Variable de tipo real. Almacena el impuesto del producto que se ingresa.</li>
-                <li><strong>PRETOT:</strong> Variable de tipo real. Almacena el costo total del producto, es decir el costo básico más el impuesto.</li>
-            </ul>
-        </div>
-
-        <div class="solution-diagram">
-            <h3>Diagrama de Flujo (Diagrama 2.24)</h3>
-            <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_2_9.png" alt="Diagrama de Flujo - Problema 2.9" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; padding: 10px; background: white;">
-            </div>
-            <p><em>El diagrama muestra una estructura selectiva doble (Si entonces / sino) que evalúa el precio básico y calcula el impuesto correspondiente según los rangos establecidos.</em></p>
-            <p><strong>Nota:</strong> Si el diagrama no se muestra, ejecuta el script de Python para generar los diagramas:</p>
-            <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;"><code>python generate_diagrams.py</code></pre>
-        </div>
-
-        <div class="test-cases">
-            <h3>Tabla de Pruebas</h3>
-            <p>A continuación podemos observar el seguimiento del algoritmo para diferentes corridas:</p>
-            <table class="test-table">
-                <thead>
-                    <tr>
-                        <th>NÚMERO DE CORRIDA</th>
-                        <th>PREBAS</th>
-                        <th>IMP</th>
-                        <th>PRETOT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>75.68</td>
-                        <td>20.27</td>
-                        <td>95.95</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>17.55</td>
-                        <td>0</td>
-                        <td>17.55</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>128.40</td>
-                        <td>41.36</td>
-                        <td>169.76</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>27.90</td>
-                        <td>2.37</td>
-                        <td>30.27</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>527.50</td>
-                        <td>249.75</td>
-                        <td>777.25</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>217.80</td>
-                        <td>77.12</td>
-                        <td>294.92</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="source-code">
-            <h3>Código Fuente Completo</h3>
-            <div class="code-block">
-                <pre><code>package com.tutortics;
-// src/problema_2.9.java
-
-import java.util.Scanner;
-
-public class problema_2_9 {
-
-    /**
-     * Calcula el impuesto según las reglas del Problema 2.9.
-     *
-     * @param precioBase El precio básico del artículo (PREBAS).
-     * @return El impuesto calculado (IMP).
-     */
-    public double calcularImpuesto(double precioBase) {
-        double impuesto;
-
-        if (precioBase > 500) {
-            // Los primeros $20 no pagan. Los siguientes $20 pagan 30%. El resto sobre $40 paga 50%.
-            impuesto = (20 * 0.30) + (precioBase - 40) * 0.50;
-        } else if (precioBase > 40) {
-            // Los primeros $20 no pagan. Los siguientes $20 pagan 30%. El resto sobre $40 paga 40%.
-            impuesto = (20 * 0.30) + (precioBase - 40) * 0.40;
-        } else if (precioBase > 20) {
-            // Los primeros $20 no pagan. El resto sobre $20 paga 30%.
-            impuesto = (precioBase - 20) * 0.30;
-        } else {
-            // Menor o igual a $20 no causa impuesto.
-            impuesto = 0;
-        }
-
-        return impuesto;
-    }
-
-    /**
-     * Calcula el precio total sumando el precio base y el impuesto.
-     *
-     * @param precioBase El precio básico del artículo (PREBAS).
-     * @return El precio total (PRETOT).
-     */
-    public double calcularPrecioTotal(double precioBase) {
-        double impuesto = calcularImpuesto(precioBase);
-        return precioBase + impuesto;
-    }
-
-    /**
-     * Método principal para la interacción con el usuario.
-     */
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        problema_2_9 calculadora = new problema_2_9();
-
-        System.out.println("Introduce el precio básico del producto:");
-        double precioBase = scanner.nextDouble();
-
-        double precioTotal = calculadora.calcularPrecioTotal(precioBase);
-        double impuesto = precioTotal - precioBase;
-
-        System.out.println("===================================");
-        System.out.printf("Precio Básico (PREBAS): $%.2f%n", precioBase);
-        System.out.printf("Impuesto (IMP):         $%.2f%n", impuesto);
-        System.out.printf("Precio Total (PRETOT):  $%.2f%n", precioTotal);
-        System.out.println("===================================");
-
-        scanner.close();
-    }
-}</code></pre>
-            </div>
-
-            <h4 style="margin-top: 30px;">Archivo Esqueleto para Estudiantes</h4>
-            <p>Este archivo contiene la estructura básica sin la lógica implementada, para que el estudiante la complete:</p>
-            <p><strong>Archivo:</strong> <code>src/main/java/com/tutortics/problema_2_9_Estudiante.java</code></p>
-            <div style="background: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 20px 0;">
-                <p><strong>💡 Actividad para el estudiante:</strong></p>
-                <p>Completa los métodos marcados con <code>// TODO</code> en el archivo <code>problema_2_9_Estudiante.java</code></p>
-                <p><strong>Pistas:</strong></p>
+                <li>Leer el monto total de la compra</li>
+                <li>Aplicar descuentos según rangos:
                 <ul>
-                    <li>Usa estructuras if-else anidadas para evaluar los rangos de precio</li>
-                    <li>Recuerda que los primeros $20 NO causan impuesto</li>
-                    <li>Verifica primero si el precio es mayor a $500 para aplicar el 50% en lugar del 40%</li>
-                </ul>
-            </div>
+                    <li>Compra >= 1000: 10% de descuento</li>
+                    <li>Compra >= 500 y < 1000: 5% de descuento</li>
+                    <li>Compra < 500: sin descuento</li>
+                </ul></li>
+                <li>Calcular el descuento aplicado</li>
+                <li>Calcular el precio final: <code>total - descuento</code></li>
+                <li>Mostrar monto original, descuento y precio final</li>
+
+            </ul>
         </div>
 
-        <div class="test-results">
-            <h3>Resultados de las Pruebas</h3>
-            <div class='exercise-group'>
-                <div class='exercise-header'>
-                    <h4>Pruebas del Problema 2.9</h4>
-                </div>
-                <div class='test-cases'>
-                    <div class='exercise-details'>
-                        <div class='test-case-item status-pasado'>testCalcularImpuestoYPrecioTotal<br><small>0.006 s</small></div>
-                    </div>
-                </div>
+        <div class="example-section">
+            <h3>Ejemplo de uso esperado</h3>
+            <pre class="code-block">// Entrada:
+Monto de compra: 750.50
+
+// Salida:
+======================================
+Monto original: $750.50
+Descuento aplicado (5%): $37.53
+Precio final: $712.97
+======================================</pre>
+        </div>
+
+        <div class="notes-section">
+            <h3>Notas rápidas</h3>
+            <p>Asegúrate de:</p>
+            <ul>
+                <li>Usa <code>if-else if-else</code> para los rangos</li>
+                <li>Calcula descuento: <code>monto * porcentaje / 100</code></li>
+                <li>Valida que el monto sea mayor a 0</li>
+                <li><strong>Tip:</strong> Usa <code>printf(&quot;$%.2f&quot;, precio)</code> para formato monetario</li>
+
+            </ul>
+        </div>
+
+        <div class="requirements-list">
+            <h3>📊 Diagrama de Flujo</h3>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_2_9.png" alt="Diagrama de Flujo - Descuento en Tienda" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
+            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
+                <em>Diagrama de flujo del algoritmo</em>
+            </p>
+        </div>
+
+        <div class="page-footer">
+            <a href="../index.html">← Volver al Menú Principal</a>
         </div>
     </div>
+
 </div>
+
+<script>
+    // Marcar el ejercicio actual como activo
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.exercises-nav a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
