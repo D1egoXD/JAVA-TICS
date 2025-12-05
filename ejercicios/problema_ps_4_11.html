@@ -5,132 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Búsqueda y Ordenamiento - Ejercicios Java</title>
     <link rel="stylesheet" href="../Styles/exercises-new.css">
-    <style>
-        .exercises-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 24px;
-            padding: 16px;
-            background: var(--color-bg-sidebar);
-            border-radius: var(--border-radius-lg);
-        }
-        
-        .exercises-nav a {
-            padding: 8px 16px;
-            background: white;
-            border: 2px solid var(--color-bg-example);
-            border-radius: var(--border-radius-sm);
-            text-decoration: none;
-            color: var(--color-text);
-            font-weight: 500;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-        
-        .exercises-nav a:hover {
-            background: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-        }
-        
-        .exercises-nav a.active {
-            background: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-        }
-        
-        .hero-section {
-            text-align: center;
-            padding: 32px 24px;
-            background: linear-gradient(135deg, var(--color-bg-sidebar) 0%, var(--color-bg-card) 100%);
-            border-radius: var(--border-radius-lg);
-            margin-bottom: 24px;
-        }
-        
-        .hero-section h1 {
-            font-size: 1.75rem;
-            margin-bottom: 8px;
-            color: var(--color-primary);
-        }
-        
-        .hero-section p {
-            color: var(--color-text-light);
-            font-size: 1rem;
-            margin: 0;
-        }
-        
-        .requirements-list {
-            background: var(--color-bg-example);
-            padding: 20px;
-            border-radius: var(--border-radius-md);
-            margin: 20px 0;
-        }
-        
-        .requirements-list h3 {
-            margin-top: 0;
-            color: var(--color-primary);
-        }
-        
-        .requirements-list ul {
-            margin-bottom: 0;
-        }
-        
-        .example-section {
-            background: var(--color-bg-sidebar);
-            padding: 20px;
-            border-radius: var(--border-radius-md);
-            margin: 20px 0;
-        }
-        
-        .example-section h3 {
-            margin-top: 0;
-            color: var(--color-primary);
-        }
-        
-        .notes-section {
-            background: #fff4e6;
-            border-left: 4px solid var(--color-code-inline);
-            padding: 16px 20px;
-            border-radius: var(--border-radius-sm);
-            margin: 20px 0;
-        }
-        
-        .notes-section h3 {
-            margin-top: 0;
-            color: var(--color-code-inline);
-            font-size: 1.1rem;
-        }
-    </style>
 </head>
 <body>
 <div class="container">
-    <div class="hero-section">
-        <h1>Ejercicios de Programación Estructurada en Java</h1>
-        <p>Selecciona un ejercicio del menú para ver los detalles.</p>
-    </div>
-
-    <nav class="exercises-nav">
-        <a href='ejemplo_1_13.html'>Ej 1.13</a>
-        <a href='ejemplo_2_5.html'>Ej 2.5</a>
-        <a href='ejemplo_4_3.html'>Ej 4.3</a>
-        <a href='ejemplo_4_7.html'>Ej 4.7</a>
-        <a href='problema_2_9.html'>Prob 2.9</a>
-        <a href='problema_3_6.html'>Prob 3.6</a>
-        <a href='problema_4_22.html'>Prob 4.22</a>
-        <a href='problema_ps_1_6.html'>PS 1.6</a>
-        <a href='problema_ps_3_1.html'>PS 3.1</a>
-        <a href='problema_ps_3_2.html'>PS 3.2</a>
-        <a href='problema_ps_3_3.html'>PS 3.3</a>
-        <a href='problema_ps_3_39.html'>PS 3.39</a>
-        <a href='problema_ps_3_4.html'>PS 3.4</a>
-        <a href='problema_ps_3_5.html'>PS 3.5</a>
-        <a href='problema_ps_4_11.html'>PS 4.11</a>
-        <a href='problema_ps_4_27.html'>PS 4.27</a>
-        <a href='problema_ps_5_6.html'>PS 5.6</a>
-
-    </nav>
-
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">PS 4.11</span>
@@ -191,18 +68,6 @@ Buscar 25: Encontrado en índice 3</pre>
     </div>
 
 </div>
-
-<script>
-    // Marcar el ejercicio actual como activo
-    document.addEventListener('DOMContentLoaded', function() {
-        const currentPage = window.location.pathname.split('/').pop();
-        document.querySelectorAll('.exercises-nav a').forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
-            }
-        });
-    });
-</script>
 
 </body>
 </html>
