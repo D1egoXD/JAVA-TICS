@@ -7,38 +7,79 @@ digraph Arreglo_Ejemplo_4_3 {
     // Nodo inicial (óvalo verde)
     start [label="INICIO", shape=oval, fillcolor="#90EE90", style="filled", width=1.5, height=0.8];
 
+    // Nodo de proceso - N_ELEMENTOS
+    nElementos [label="N_ELEMENTOS ← 70", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+
     // Nodo de proceso - declarar arreglo
-    declararArre [label="Declarar ARRE[1..70]", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+    declararArre [label="Declarar ARRE[70]", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de proceso - inicializar I
-    initI [label="I ← 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+    initI [label="I ← 0", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
-    // Nodo de decisión - ciclo I ≤ 70
-    loopI [label="I ≤ 70?", shape=diamond, fillcolor="#ADD8E6", style="filled", width=1.5];
+    // Nodo de decisión - ciclo I ≤ 69
+    loopI [label="I ≤ 69?", shape=diamond, fillcolor="#ADD8E6", style="filled", width=1.5];
 
-    // Nodo de entrada - leer ARRE[i]
-    leerArre [label="Leer ARRE[I]", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
+    // Nodo de proceso - asignar valor
+    asignar [label="ARRE[I] ← (I + 1) * 10", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de proceso - incrementar I
     incI [label="I ← I + 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
-    // Nodo de salida - mostrar ARRE
-    mostrarArre [label="Mostrar ARRE", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
+    // Nodo de salida - mensaje demo
+    msgDemo [label="\"Demostración del\nEjemplo 4.3 - Arreglos\"", shape=egg, fillcolor="#FFFACD", style="filled"];
+
+    // Nodo de salida - primer valor
+    showFirst [label="\"Primer valor:\", ARRE[0]", shape=egg, fillcolor="#FFFACD", style="filled"];
+
+    // Nodo de salida - segundo valor
+    showSecond [label="\"Segundo valor:\", ARRE[1]", shape=egg, fillcolor="#FFFACD", style="filled"];
+
+    // Nodo de salida - último valor
+    showLast [label="\"Último valor:\", ARRE[69]", shape=egg, fillcolor="#FFFACD", style="filled"];
+
+    // Nodo de salida - mensaje contenido
+    msgContent [label="\"Contenido del arreglo:\"", shape=egg, fillcolor="#FFFACD", style="filled"];
+
+    // Nodo de proceso - inicializar J
+    initJ [label="J ← 0", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+
+    // Nodo de decisión - ciclo J ≤ 69
+    loopJ [label="J ≤ 69?", shape=diamond, fillcolor="#ADD8E6", style="filled", width=1.5];
+
+    // Nodo de salida - escribir ARRE[J]
+    writeArreJ [label="Escribir ARRE[J]", shape=egg, fillcolor="#FFFACD", style="filled"];
+
+    // Nodo de proceso - incrementar J
+    incJ [label="J ← J + 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo final (óvalo rojo/coral)
     end [label="FIN", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
 
     // Conexiones
-    start -> declararArre;
+    start -> nElementos;
+    nElementos -> declararArre;
     declararArre -> initI;
     initI -> loopI;
     
     // Ciclo para llenar el arreglo
-    loopI -> leerArre [label="Sí"];
-    leerArre -> incI;
+    loopI -> asignar [label="Sí"];
+    asignar -> incI;
     incI -> loopI;
     
     // Después del ciclo, mostrar resultados
-    loopI -> mostrarArre [label="No"];
-    mostrarArre -> end;
+    loopI -> msgDemo [label="No"];
+    msgDemo -> showFirst;
+    showFirst -> showSecond;
+    showSecond -> showLast;
+    showLast -> msgContent;
+    
+    // Segundo ciclo para mostrar todo el arreglo
+    msgContent -> initJ;
+    initJ -> loopJ;
+    loopJ -> writeArreJ [label="Sí"];
+    writeArreJ -> incJ;
+    incJ -> loopJ;
+    
+    // Fin
+    loopJ -> end [label="No"];
 }
