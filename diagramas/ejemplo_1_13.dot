@@ -1,29 +1,31 @@
 digraph PromedioCalificaciones {
     // Configuración general
     rankdir=TB;
-    node [shape=box, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=10];
-    edge [fontname="Arial", fontsize=9];
+    node [shape=box, style=filled, fontname="Arial", fontsize=11];
+    edge [fontname="Arial", fontsize=10, color=black, arrowsize=0.8];
 
-    // Nodo inicial (círculo)
-    start [label="INICIO", shape=ellipse, fillcolor=lightgreen];
+    // Nodo inicial (óvalo verde - Símbolo de Inicio)
+    start [label="INICIO", shape=oval, fillcolor="#90EE90", style="filled", width=1.5, height=0.8];
 
-    // Nodo de lectura de datos (paralelogramo)
-    read1 [label="Leer MAT", shape=parallelogram, fillcolor=lightyellow];
-    read2 [label="Leer CAL1, CAL2,\nCAL3, CAL4, CAL5", shape=parallelogram, fillcolor=lightyellow];
+    // Nodo de entrada MAT (paralelogramo amarillo claro)
+    input1 [label="Leer MAT", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
 
-    // Nodo de proceso (rectángulo)
-    process [label="PRO ← (CAL1 + CAL2 +\nCAL3 + CAL4 + CAL5) / 5", shape=box, fillcolor=lightblue];
+    // Nodo de entrada calificaciones (paralelogramo amarillo claro)
+    input2 [label="Leer CAL1, CAL2,\nCAL3, CAL4, CAL5", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
 
-    // Nodo de escritura/salida (paralelogramo)
-    write [label="Escribir MAT, PRO", shape=parallelogram, fillcolor=lightyellow];
+    // Nodo de proceso (rectángulo azul claro)
+    process [label="PRO ← (CAL1 + CAL2 +\nCAL3 + CAL4 + CAL5) / 5", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
-    // Nodo final (círculo)
-    end [label="FIN", shape=ellipse, fillcolor=lightcoral];
+    // Nodo de salida (egg - Símbolo de Documento Impreso)
+    output [label="Escribir MAT, PRO", shape=egg, fillcolor="#FFFACD", style="filled"];
+
+    // Nodo final (óvalo rojo/coral - Símbolo de Fin)
+    end [label="FIN", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
 
     // Conexiones
-    start -> read1;
-    read1 -> read2;
-    read2 -> process;
-    process -> write;
-    write -> end;
+    start -> input1;
+    input1 -> input2;
+    input2 -> process;
+    process -> output;
+    output -> end;
 }
