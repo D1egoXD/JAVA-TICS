@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis de Vendedores - Ejercicios Java</title>
+    <title>Búsqueda Binaria - Ejercicios Java</title>
     <link rel="stylesheet" href="../Styles/exercises-new.css">
 </head>
 <body>
@@ -11,60 +11,127 @@
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">Ejemplo 4.3</span>
-            <h2>Análisis de Vendedores</h2>
+            <h2>Búsqueda Binaria en Arreglos</h2>
         </div>
 
         <div class="exercise-description">
-            <p>Practicarás el uso de arreglos unidimensionales para almacenar y procesar conjuntos de datos. Aprenderás a iterar sobre colecciones, realizar análisis estadísticos básicos y encontrar valores extremos en conjuntos de información.</p>
+            <p>En este ejercicio aprenderás uno de los algoritmos de búsqueda más eficientes: la búsqueda binaria. Este algoritmo funciona dividiendo repetidamente a la mitad el conjunto de datos ordenado, reduciendo significativamente el tiempo de búsqueda. Es fundamental que el arreglo esté ordenado previamente para que este algoritmo funcione correctamente.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Crear un arreglo para almacenar datos de ventas de N vendedores</li>
-                <li>Leer las ventas de cada vendedor usando un ciclo <code>for</code></li>
-                <li>Calcular el total de ventas sumando todos los elementos</li>
-                <li>Encontrar la venta máxima y la venta mínima</li>
-                <li>Determinar qué vendedor tuvo la mejor y peor venta</li>
-                <li>Calcular el promedio de ventas</li>
-
+                <li>Leer el número de elementos <code>N</code> del arreglo (debe estar entre 1 y 50)</li>
+                <li>Validar que N esté en el rango permitido</li>
+                <li>Leer N elementos y almacenarlos en un arreglo <code>VECTOR</code></li>
+                <li><strong>Importante:</strong> Los datos deben estar ordenados de menor a mayor</li>
+                <li>Leer el valor <code>X</code> que se desea buscar en el arreglo</li>
+                <li>Implementar el algoritmo de búsqueda binaria con las variables:
+                    <ul>
+                        <li><code>IZQ</code>: límite izquierdo (índice inicial)</li>
+                        <li><code>DER</code>: límite derecho (índice final)</li>
+                        <li><code>CEN</code>: centro del segmento actual</li>
+                        <li><code>BAN</code>: bandera (1 = no encontrado, 0 = encontrado)</li>
+                    </ul>
+                </li>
+                <li>Calcular el centro: <code>CEN = (IZQ + DER) / 2</code></li>
+                <li>Comparar X con el elemento en la posición central</li>
+                <li>Ajustar los límites según la comparación hasta encontrar el elemento o agotar las opciones</li>
+                <li>Mostrar si el elemento fue encontrado o no</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
-Número de vendedores: 5
-Ventas: 1500.0 2300.0 1800.0 2100.0 1950.0
+Ingrese número de elementos: 7
+Ingrese el dato 1: 10
+Ingrese el dato 2: 20
+Ingrese el dato 3: 30
+Ingrese el dato 4: 40
+Ingrese el dato 5: 50
+Ingrese el dato 6: 60
+Ingrese el dato 7: 70
+Ingrese el dato a buscar: 40
 
 // Salida:
-======================================
-Total de ventas: 9650.0
-Venta máxima: 2300.0 (Vendedor 2)
-Venta mínima: 1500.0 (Vendedor 1)
-Promedio: 1930.0
-======================================</pre>
+---------------------------------
+El elemento sí está en el arreglo
+---------------------------------
+
+// Otro ejemplo - Elemento no encontrado:
+Ingrese el dato a buscar: 25
+
+// Salida:
+---------------------------------
+El elemento no está en el arreglo
+---------------------------------</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
             <p>Asegúrate de:</p>
             <ul>
-                <li>Inicializa max con el primer elemento del arreglo, no con 0</li>
-                <li>Usa variables separadas para rastrear índices de max y min</li>
-                <li>El promedio se calcula: <code>total / arreglo.length</code></li>
-                <li><strong>Tip:</strong> Puedes usar <code>Arrays.stream(ventas).max()</code> en Java 8+</li>
-
+                <li><strong>Requisito crítico:</strong> El arreglo DEBE estar ordenado ascendentemente</li>
+                <li>Inicializar <code>IZQ = 1</code>, <code>DER = N</code> y <code>BAN = 1</code></li>
+                <li>El ciclo continúa mientras <code>IZQ ≤ DER</code> y <code>BAN = 1</code></li>
+                <li>Usar división entera (DIV) para calcular CEN: <code>(IZQ + DER) / 2</code></li>
+                <li>Si <code>X = VECTOR[CEN]</code>: elemento encontrado, hacer <code>BAN = 0</code></li>
+                <li>Si <code>X > VECTOR[CEN]</code>: buscar en mitad derecha, hacer <code>IZQ = CEN + 1</code></li>
+                <li>Si <code>X < VECTOR[CEN]</code>: buscar en mitad izquierda, hacer <code>DER = CEN - 1</code></li>
+                <li><strong>Complejidad:</strong> O(log n) - mucho más rápido que búsqueda secuencial O(n)</li>
             </ul>
+        </div>
+
+        <div class="requirements-list">
+            <h3>📋 Expresión en Lenguaje Algorítmico</h3>
+            <pre class="code-block" style="background-color: #f5f5f5; padding: 15px; border-radius: 8px;">
+Programa 4.15 - Búsqueda binaria
+
+1. Escribir "Ingrese número de datos"
+2. Leer N
+3. Si (N >= 1) y (N <= 50) entonces
+   3.1 Repetir con I desde 1 hasta N
+       Escribir "Ingrese el dato", I 
+       Leer VECTOR[I]
+       Hacer I ← I + 1
+   3.2 {Fin del ciclo}
+   
+   Escribir "Ingrese el dato a buscar"
+   Leer X
+   Hacer IZQ ← 1, DER ← N y BAN ← 1
+   
+   3.3 Mientras (IZQ <= DER) y (BAN = 1)
+       Hacer CEN ← (IZQ + DER) DIV 2
+       3.3.1 Si (X = VECTOR[CEN]) entonces
+             Hacer BAN ← 0
+             sino
+             3.3.1.1 Si X > VECTOR[CEN] entonces
+                     Hacer IZQ ← CEN + 1
+                     sino
+                     Hacer DER ← CEN - 1
+             3.3.1.2 {Fin del condicional}
+       3.3.2 {Fin del condicional}
+   3.4 {Fin del ciclo}
+   
+   3.5 Si (BAN = 1) entonces
+       Escribir "El elemento no está en el arreglo" 
+       sino
+       Escribir "El elemento sí está en el arreglo"
+   3.6 {Fin del condicional}
+   sino
+   Escribir "Error en los datos"
+4. {Fin condicional}
+            </pre>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/ejemplo_4_3.png" alt="Diagrama de Flujo - Análisis de Vendedores" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/ejemplo_4_3.png?v=20251207" alt="Diagrama de Flujo - Búsqueda Binaria" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
-                <em>Diagrama de flujo del algoritmo</em>
+                <em>Diagrama de flujo del algoritmo de búsqueda binaria</em>
             </p>
         </div>
 
