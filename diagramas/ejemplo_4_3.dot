@@ -8,34 +8,22 @@ digraph Arreglo_Ejemplo_4_3 {
     start [label="INICIO", shape=oval, fillcolor="#90EE90", style="filled", width=1.5, height=0.8];
 
     // Nodo de proceso - declarar arreglo
-    declararArre [label="Declarar ARRE[1..70]\nde enteros", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+    declararArre [label="Declarar ARRE[1..70]", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de proceso - inicializar I
     initI [label="I ← 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de decisión - ciclo I ≤ 70
-    loopI [label="I ≤ 70", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.5];
+    loopI [label="I ≤ 70?", shape=diamond, fillcolor="#ADD8E6", style="filled", width=1.5];
 
-    // Nodo de proceso - asignar valor
-    asignar [label="ARRE[I] ← I * 10", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+    // Nodo de entrada - leer ARRE[i]
+    leerArre [label="Leer ARRE[I]", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
 
     // Nodo de proceso - incrementar I
     incI [label="I ← I + 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
-    // Nodo de salida - mostrar mensaje
-    msgDemo [label="\"Demostración del\nEjemplo 4.3 - Arreglos\"", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Nodo de salida - mostrar ARRE[1]
-    showArre1 [label="\"El valor en la primera\nposición es:\", ARRE[1]", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Nodo de salida - mostrar ARRE[2]
-    showArre2 [label="\"El valor en la segunda\nposición es:\", ARRE[2]", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Nodo de salida - mostrar ARRE[70]
-    showArre70 [label="\"El valor en la última\nposición es:\", ARRE[70]", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Nodo de salida - mostrar contenido completo
-    showAll [label="\"Contenido completo\ndel arreglo:\", ARRE", shape=egg, fillcolor="#FFFACD", style="filled"];
+    // Nodo de salida - mostrar ARRE
+    mostrarArre [label="Mostrar ARRE", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
 
     // Nodo final (óvalo rojo/coral)
     end [label="FIN", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
@@ -46,136 +34,11 @@ digraph Arreglo_Ejemplo_4_3 {
     initI -> loopI;
     
     // Ciclo para llenar el arreglo
-    loopI -> asignar [label="Sí"];
-    asignar -> incI;
+    loopI -> leerArre [label="Sí"];
+    leerArre -> incI;
     incI -> loopI;
     
     // Después del ciclo, mostrar resultados
-    loopI -> msgDemo [label="No"];
-    msgDemo -> showArre1;
-    showArre1 -> showArre2;
-    showArre2 -> showArre70;
-    showArre70 -> showAll;
-    showAll -> end;
-}
-
-    // Nodo de decisión - comparar X con VECTOR[CEN]
-    compEqual [label="X = VECTOR[CEN]", shape=diamond, fillcolor="#FFFACD", style="filled", width=2.0];
-
-    // Nodo de proceso - elemento encontrado
-    found [label="BAN ← 0", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
-
-    // Nodo de decisión - X mayor que VECTOR[CEN]
-    compGreater [label="X > VECTOR[CEN]", shape=diamond, fillcolor="#FFFACD", style="filled", width=2.0];
-
-    // Nodo de proceso - mover IZQ
-    moveIZQ [label="IZQ ← CEN + 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
-
-    // Nodo de proceso - mover DER
-    moveDER [label="DER ← CEN - 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
-
-    // Punto de convergencia después de comparaciones
-    convSearch [label="", shape=circle, fillcolor=black, width=0.15, height=0.15];
-
-    // Conector C
-    connC [label="C", shape=pentagon, fillcolor="white", style="filled", width=0.6, height=0.6];
-
-    // Nodo de decisión final - BAN = 1
-    checkBAN [label="BAN = 1", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.5];
-
-    // Nodo de salida - no encontrado
-    msgNotFound [label="\"El elemento no\nestá en el arreglo\"", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Nodo de salida - encontrado
-    msgFound [label="\"El elemento sí\nestá en el arreglo\"", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Punto de convergencia final
-    convFinal [label="", shape=circle, fillcolor=black, width=0.15, height=0.15];
-
-    // Conector B
-    connB [label="B", shape=pentagon, fillcolor="white", style="filled", width=0.6, height=0.6];
-
-    // Nodo de salida - error
-    msgError [label="\"Error en los datos\"", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Punto de convergencia antes de FIN
-    convEnd [label="", shape=circle, fillcolor=black, width=0.15, height=0.15];
-
-    // Nodo final (óvalo rojo/coral)
-    end [label="FIN", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
-
-    // Conexiones principales
-    start -> msg1;
-    msg1 -> inputN;
-    inputN -> validN;
-    
-    // Si N es válido
-    validN -> initI [label="Sí"];
-    initI -> loopI;
-    
-    // Ciclo de lectura de datos
-    loopI -> msgDato [label="Sí"];
-    msgDato -> inputVector;
-    inputVector -> incI;
-    incI -> loopI;
-    
-    // Fin del ciclo - ir a A
-    loopI -> connA [label="No"];
-    
-    // Desde A - búsqueda binaria
-    connA -> msgBuscar;
-    msgBuscar -> inputX;
-    inputX -> initSearch;
-    initSearch -> loopSearch;
-    
-    // Ciclo de búsqueda
-    loopSearch -> calcCEN [label="Sí"];
-    calcCEN -> compEqual;
-    
-    // Si X = VECTOR[CEN]
-    compEqual -> found [label="Sí"];
-    
-    // Si X != VECTOR[CEN]
-    compEqual -> compGreater [label="No"];
-    
-    // Si X > VECTOR[CEN]
-    compGreater -> moveIZQ [label="Sí"];
-    
-    // Si X < VECTOR[CEN]
-    compGreater -> moveDER [label="No"];
-    
-    // Convergencia de las tres ramas
-    found -> convSearch;
-    moveIZQ -> convSearch;
-    moveDER -> convSearch;
-    
-    // Volver al ciclo
-    convSearch -> loopSearch;
-    
-    // Fin del ciclo - ir a C
-    loopSearch -> connC [label="No"];
-    
-    // Desde C - verificar resultado
-    connC -> checkBAN;
-    
-    // Si BAN = 1 (no encontrado)
-    checkBAN -> msgNotFound [label="Sí"];
-    
-    // Si BAN = 0 (encontrado)
-    checkBAN -> msgFound [label="No"];
-    
-    // Convergencia de resultados
-    msgNotFound -> convFinal;
-    msgFound -> convFinal;
-    convFinal -> connB;
-    
-    // Si N no es válido
-    validN -> msgError [label="No"];
-    
-    // Convergencia final
-    connB -> convEnd;
-    msgError -> convEnd;
-    
-    // Fin
-    convEnd -> end;
+    loopI -> mostrarArre [label="No"];
+    mostrarArre -> end;
 }
