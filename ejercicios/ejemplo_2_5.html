@@ -15,52 +15,78 @@
         </div>
 
         <div class="exercise-description">
-            <p>Este ejercicio te ayudará a dominar las estructuras de selección múltiple en Java. Aprenderás a evaluar diferentes condiciones y ejecutar bloques de código específicos según el valor de una variable, utilizando la estructura switch-case de manera eficiente.</p>
+            <p>En este ejercicio aprenderás a usar la estructura de selección múltiple <code>switch</code> en Java. Esta estructura te permite evaluar una variable y ejecutar diferentes acciones dependiendo de su valor. Es especialmente útil cuando tienes múltiples opciones y quieres que tu código sea más limpio y fácil de leer que usar muchos <code>if-else</code>.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer un valor entero que represente una opción</li>
-                <li>Implementar estructura <code>switch-case</code> para evaluar la opción</li>
-                <li>Ejecutar código específico para cada caso válido</li>
-                <li>Manejar el caso <code>default</code> para opciones inválidas</li>
-                <li>Mostrar mensajes apropiados para cada selección</li>
-
+                <li>Leer un valor entero para el <code>SELECTOR</code> (variable que determina qué acción ejecutar)</li>
+                <li>Implementar estructura <code>switch</code> que evalúe el valor del selector</li>
+                <li>Si el selector es 1: ejecutar <code>ACCION 1</code></li>
+                <li>Si el selector es 2: ejecutar <code>ACCION 2</code></li>
+                <li>Si el selector es 3: ejecutar <code>ACCION 3</code></li>
+                <li>Si el selector es cualquier otro valor: ejecutar <code>ACCION X</code> (caso default)</li>
+                <li>Después de cualquier acción, siempre ejecutar <code>ACCION Y</code></li>
+                <li>Mostrar el resultado de las acciones ejecutadas</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
-Seleccione una opción (1-4): 2
+Introduce un valor para el SELECTOR (1, 2, 3, u otro): 2
 
 // Salida:
-======================================
-Ha seleccionado la opción 2
-Ejecutando acción correspondiente...
-======================================</pre>
+---------------------------------
+Se ejecutó la ACCION 2. Luego, se ejecutó la ACCION Y.
+---------------------------------
+
+// Otro ejemplo - Entrada:
+Introduce un valor para el SELECTOR (1, 2, 3, u otro): 5
+
+// Salida:
+---------------------------------
+De otra forma: Se ejecutó la ACCION X. Luego, se ejecutó la ACCION Y.
+---------------------------------</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
             <p>Asegúrate de:</p>
             <ul>
-                <li>La estructura <code>switch</code> es más eficiente que múltiples <code>if-else</code></li>
-                <li>No olvides incluir <code>break;</code> al final de cada caso</li>
-                <li>El caso <code>default</code> maneja valores no contemplados</li>
-                <li><strong>Tip:</strong> Desde Java 12+ puedes usar switch expressions con <code>-></code></li>
-
+                <li>Usar <code>Scanner</code> con <code>nextInt()</code> para leer el valor del selector</li>
+                <li>Incluir <code>break;</code> al final de cada <code>case</code> para evitar que se ejecuten los siguientes casos</li>
+                <li>El <code>default</code> se ejecuta cuando el selector no coincide con ningún caso específico</li>
+                <li>La <code>ACCION Y</code> siempre se ejecuta al final, sin importar qué caso del switch se haya activado</li>
+                <li><strong>Tip:</strong> Observa que el flujo siempre continúa después del switch, ejecutando la acción final</li>
             </ul>
+        </div>
+
+        <div class="requirements-list">
+            <h3>📋 Expresión en Lenguaje Algorítmico</h3>
+            <pre class="code-block" style="background-color: #f5f5f5; padding: 15px; border-radius: 8px;">
+Programa 2.5
+Si selector Igual
+    Valor 1: hacer acción 1 
+    Valor 2: Hacer acción 2 
+    Valor 3: Hacer acción 3 
+    De otra forma: Hacer acción X 
+{Fin del condicional}
+Hacer acción Y
+            </pre>
+            <p style="margin-top: 10px; font-size: 0.95rem;">
+                <strong>Observa:</strong> Si el selector toma el valor 1 se ejecuta la acción 1, si toma el valor 2 se realiza la acción 2, si toma el valor 3 se realiza la acción 3, y si toma cualquier otro valor se realiza la acción X. Luego cuando se continúa con el flujo normal del programa se realiza la acción Y.
+            </p>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/ejemplo_2_5.png" alt="Diagrama de Flujo - Selector Múltiple" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/ejemplo_2_5.png?v=20251207" alt="Diagrama de Flujo - Selector Múltiple" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
-                <em>Diagrama de flujo del algoritmo</em>
+                <em>Diagrama de flujo del algoritmo de selección múltiple</em>
             </p>
         </div>
 
