@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Búsqueda Binaria - Ejercicios Java</title>
+    <title>Arreglos Unidimensionales - Ejercicios Java</title>
     <link rel="stylesheet" href="../Styles/exercises-new.css">
 </head>
 <body>
@@ -11,93 +11,94 @@
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">Ejemplo 4.3</span>
-            <h2>Búsqueda Binaria en Arreglos</h2>
+            <h2>Introducción a Arreglos Unidimensionales</h2>
         </div>
 
         <div class="exercise-description">
-            <p>En este ejercicio aprenderás uno de los algoritmos de búsqueda más eficientes: la búsqueda binaria. Este algoritmo funciona dividiendo repetidamente a la mitad el conjunto de datos ordenado, reduciendo significativamente el tiempo de búsqueda. Es fundamental que el arreglo esté ordenado previamente para que este algoritmo funcione correctamente.</p>
+            <p>En este ejercicio aprenderás los conceptos fundamentales de los arreglos (arrays) en Java. Un arreglo es una estructura de datos que permite almacenar múltiples valores del mismo tipo bajo un solo nombre. Cada elemento del arreglo se identifica mediante un índice numérico.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer el número de elementos <code>N</code> del arreglo (debe estar entre 1 y 50)</li>
-                <li>Validar que N esté en el rango permitido</li>
-                <li>Leer N elementos y almacenarlos en un arreglo <code>VECTOR</code></li>
-                <li><strong>Importante:</strong> Los datos deben estar ordenados de menor a mayor</li>
-                <li>Leer el valor <code>X</code> que se desea buscar en el arreglo</li>
-                <li>Implementar el algoritmo de búsqueda binaria con las variables:
+                <li>Declarar un arreglo <code>ARRE</code> de 70 elementos enteros</li>
+                <li>Comprender que en la notación del libro: <code>ARRE = ARREGLO [1..70] DE enteros</code></li>
+                <li>Llenar el arreglo con valores usando un ciclo <code>for</code></li>
+                <li>Asignar a cada posición I el valor <code>I * 10</code></li>
+                <li>Mostrar valores específicos del arreglo:
                     <ul>
-                        <li><code>IZQ</code>: límite izquierdo (índice inicial)</li>
-                        <li><code>DER</code>: límite derecho (índice final)</li>
-                        <li><code>CEN</code>: centro del segmento actual</li>
-                        <li><code>BAN</code>: bandera (1 = no encontrado, 0 = encontrado)</li>
+                        <li>Primera posición: <code>ARRE[1]</code></li>
+                        <li>Segunda posición: <code>ARRE[2]</code></li>
+                        <li>Última posición: <code>ARRE[70]</code></li>
                     </ul>
                 </li>
-                <li>Calcular el centro: <code>CEN = (IZQ + DER) / 2</code></li>
-                <li>Comparar X con el elemento en la posición central</li>
-                <li>Ajustar los límites según la comparación hasta encontrar el elemento o agotar las opciones</li>
-                <li>Mostrar si el elemento fue encontrado o no</li>
+                <li>Mostrar el contenido completo del arreglo</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
-            <pre class="code-block">// Entrada:
-Ingrese número de elementos: 7
-Ingrese el dato 1: 10
-Ingrese el dato 2: 20
-Ingrese el dato 3: 30
-Ingrese el dato 4: 40
-Ingrese el dato 5: 50
-Ingrese el dato 6: 60
-Ingrese el dato 7: 70
-Ingrese el dato a buscar: 40
-
-// Salida:
----------------------------------
-El elemento sí está en el arreglo
----------------------------------
-
-// Otro ejemplo - Elemento no encontrado:
-Ingrese el dato a buscar: 25
-
-// Salida:
----------------------------------
-El elemento no está en el arreglo
----------------------------------</pre>
+            <pre class="code-block">// Salida:
+=========================================
+Demostración del Ejemplo 4.3 - Arreglos
+=========================================
+El valor en la primera posición (índice 0) es: 10
+El valor en la segunda posición (índice 1) es: 20
+El valor en la última posición (índice 69) es: 700
+-----------------------------------------
+Contenido completo del arreglo:
+[10, 20, 30, 40, 50, 60, 70, 80, 90, 100, ..., 690, 700]
+=========================================</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
             <p>Asegúrate de:</p>
             <ul>
-                <li><strong>Requisito crítico:</strong> El arreglo DEBE estar ordenado ascendentemente</li>
-                <li>Inicializar <code>IZQ = 1</code>, <code>DER = N</code> y <code>BAN = 1</code></li>
-                <li>El ciclo continúa mientras <code>IZQ ≤ DER</code> y <code>BAN = 1</code></li>
-                <li>Usar división entera (DIV) para calcular CEN: <code>(IZQ + DER) / 2</code></li>
-                <li>Si <code>X = VECTOR[CEN]</code>: elemento encontrado, hacer <code>BAN = 0</code></li>
-                <li>Si <code>X > VECTOR[CEN]</code>: buscar en mitad derecha, hacer <code>IZQ = CEN + 1</code></li>
-                <li>Si <code>X < VECTOR[CEN]</code>: buscar en mitad izquierda, hacer <code>DER = CEN - 1</code></li>
-                <li><strong>Complejidad:</strong> O(log n) - mucho más rápido que búsqueda secuencial O(n)</li>
+                <li><strong>Diferencia importante:</strong> En el libro los índices van de 1 a 70, en Java van de 0 a 69</li>
+                <li>Declaración en Java: <code>int[] arre = new int[70];</code></li>
+                <li><code>ARRE[1]</code> del libro = <code>arre[0]</code> en Java (primera posición)</li>
+                <li><code>ARRE[70]</code> del libro = <code>arre[69]</code> en Java (última posición)</li>
+                <li>El número total de elementos (NTE) = (70 - 1 + 1) = 70</li>
+                <li>Usa <code>arre.length</code> para obtener el tamaño del arreglo</li>
+                <li><strong>Tip:</strong> <code>Arrays.toString(arre)</code> imprime todo el arreglo fácilmente</li>
             </ul>
         </div>
 
         <div class="requirements-list">
-            <h3>📋 Expresión en Lenguaje Algorítmico</h3>
-            <pre class="code-block" style="background-color: #f5f5f5; padding: 15px; border-radius: 8px;">
-Programa 4.15 - Búsqueda binaria
+            <h3>📋 Conceptos del Arreglo</h3>
+            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <p><strong>ARRE = ARREGLO [1..70] DE enteros</strong></p>
+                <p style="margin-top: 10px;">Representación visual del arreglo ARRE:</p>
+                <pre style="font-family: monospace; background-color: white; padding: 10px; border-radius: 5px;">
+┌────┬────┬────┬─────┬─────────┬────────┐
+│ 10 │ 20 │ 30 │ ... │   ...   │  700   │
+└────┴────┴────┴─────┴─────────┴────────┘
+  1    2    3    4              70
+                </pre>
+                <ul style="margin-top: 10px;">
+                    <li><strong>NTE</strong> = (70 - 1 + 1) = 70 elementos</li>
+                    <li>Cada elemento del arreglo ARRE será un número entero</li>
+                    <li>Se puede acceder por medio de un índice entre 1 y 70</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Ejemplos de acceso:</strong></p>
+                <ul>
+                    <li><code>ARRE[1]</code> → hace referencia al elemento de la posición 1</li>
+                    <li><code>ARRE[2]</code> → hace referencia al elemento de la posición 2</li>
+                    <li><code>ARRE[70]</code> → hace referencia al elemento de la posición 70</li>
+                </ul>
+            </div>
+        </div>
 
-1. Escribir "Ingrese número de datos"
-2. Leer N
-3. Si (N >= 1) y (N <= 50) entonces
-   3.1 Repetir con I desde 1 hasta N
-       Escribir "Ingrese el dato", I 
-       Leer VECTOR[I]
-       Hacer I ← I + 1
-   3.2 {Fin del ciclo}
-   
-   Escribir "Ingrese el dato a buscar"
+        <div class="requirements-list">
+            <h3>📊 Diagrama de Flujo</h3>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/ejemplo_4_3.png?v=20251207" alt="Diagrama de Flujo - Arreglos Unidimensionales" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+            </div>
+            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
+                <em>Diagrama de flujo para declarar, llenar y mostrar un arreglo</em>
+            </p>
+        </div>
    Leer X
    Hacer IZQ ← 1, DER ← N y BAN ← 1
    

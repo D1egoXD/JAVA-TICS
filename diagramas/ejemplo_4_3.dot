@@ -1,4 +1,4 @@
-digraph BusquedaBinaria {
+digraph Arreglo_Ejemplo_4_3 {
     // Configuración general
     rankdir=TB;
     node [shape=box, style=filled, fontname="Arial", fontsize=11];
@@ -7,47 +7,57 @@ digraph BusquedaBinaria {
     // Nodo inicial (óvalo verde)
     start [label="INICIO", shape=oval, fillcolor="#90EE90", style="filled", width=1.5, height=0.8];
 
-    // Nodo de salida - mensaje
-    msg1 [label="\"Ingrese número\nde elementos\"", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Nodo de entrada N
-    inputN [label="N", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
-
-    // Nodo de decisión - validación N
-    validN [label="N ≥ 1 y\nN ≤ 50", shape=diamond, fillcolor="#FFFACD", style="filled", width=2.0];
+    // Nodo de proceso - declarar arreglo
+    declararArre [label="Declarar ARRE[1..70]\nde enteros", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de proceso - inicializar I
     initI [label="I ← 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
-    // Nodo de decisión - ciclo I ≤ N
-    loopI [label="I ≤ N", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.5];
+    // Nodo de decisión - ciclo I ≤ 70
+    loopI [label="I ≤ 70", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.5];
 
-    // Nodo de salida - solicitar dato
-    msgDato [label="\"Ingrese el dato\", I", shape=egg, fillcolor="#FFFACD", style="filled"];
-
-    // Nodo de entrada - leer dato
-    inputVector [label="VECTOR[I]", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
+    // Nodo de proceso - asignar valor
+    asignar [label="ARRE[I] ← I * 10", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de proceso - incrementar I
     incI [label="I ← I + 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
-    // Conector A
-    connA [label="A", shape=pentagon, fillcolor="white", style="filled", width=0.6, height=0.6];
+    // Nodo de salida - mostrar mensaje
+    msgDemo [label="\"Demostración del\nEjemplo 4.3 - Arreglos\"", shape=egg, fillcolor="#FFFACD", style="filled"];
 
-    // Nodo de salida - solicitar dato a buscar
-    msgBuscar [label="\"Ingrese el dato\na buscar\"", shape=egg, fillcolor="#FFFACD", style="filled"];
+    // Nodo de salida - mostrar ARRE[1]
+    showArre1 [label="\"El valor en la primera\nposición es:\", ARRE[1]", shape=egg, fillcolor="#FFFACD", style="filled"];
 
-    // Nodo de entrada X
-    inputX [label="X", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
+    // Nodo de salida - mostrar ARRE[2]
+    showArre2 [label="\"El valor en la segunda\nposición es:\", ARRE[2]", shape=egg, fillcolor="#FFFACD", style="filled"];
 
-    // Nodo de proceso - inicializar variables búsqueda
-    initSearch [label="IZQ ← 1\nDER ← N\nBAN ← 1", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+    // Nodo de salida - mostrar ARRE[70]
+    showArre70 [label="\"El valor en la última\nposición es:\", ARRE[70]", shape=egg, fillcolor="#FFFACD", style="filled"];
 
-    // Nodo de decisión - ciclo búsqueda
-    loopSearch [label="IZQ ≤ DER\ny\nBAN = 1", shape=diamond, fillcolor="#FFFACD", style="filled", width=2.0];
+    // Nodo de salida - mostrar contenido completo
+    showAll [label="\"Contenido completo\ndel arreglo:\", ARRE", shape=egg, fillcolor="#FFFACD", style="filled"];
 
-    // Nodo de proceso - calcular centro
-    calcCEN [label="CEN ← (IZQ + DER) DIV 2", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+    // Nodo final (óvalo rojo/coral)
+    end [label="FIN", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
+
+    // Conexiones
+    start -> declararArre;
+    declararArre -> initI;
+    initI -> loopI;
+    
+    // Ciclo para llenar el arreglo
+    loopI -> asignar [label="Sí"];
+    asignar -> incI;
+    incI -> loopI;
+    
+    // Después del ciclo, mostrar resultados
+    loopI -> msgDemo [label="No"];
+    msgDemo -> showArre1;
+    showArre1 -> showArre2;
+    showArre2 -> showArre70;
+    showArre70 -> showAll;
+    showAll -> end;
+}
 
     // Nodo de decisión - comparar X con VECTOR[CEN]
     compEqual [label="X = VECTOR[CEN]", shape=diamond, fillcolor="#FFFACD", style="filled", width=2.0];
