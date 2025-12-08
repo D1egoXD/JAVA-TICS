@@ -3,63 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis Estadístico de Números - Ejercicios Java</title>
-    <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <title>PS 3.39 - Función F(X, Y, Z) con Factoriales - Ejercicios Java</title>
+    <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
 </head>
 <body>
 <div class="container">
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">PS 3.39</span>
-            <h2>Análisis Estadístico de Números</h2>
+            <h2>Función F(X, Y, Z) con Factoriales</h2>
         </div>
 
         <div class="exercise-description">
-            <p>Este ejercicio combina múltiples conceptos: ciclos, condiciones, acumuladores y comparaciones. Practicarás el análisis de datos integral calculando múltiples estadísticas en un solo recorrido del conjunto de datos.</p>
+            <p>Desarrolla un programa que evalúe K veces la función F(X, Y, Z) definida por casos: si X > 0 ∧ Y > 0 ∧ Z > 0 entonces F = Z!/Y!, si solo X > 0 entonces F = X!, en cualquier otro caso F = 1. El algoritmo lee K, ejecuta un ciclo (I ← 1 hasta I ≤ K), lee X, Y, Z en cada iteración, evalúa las condiciones anidadas y calcula el resultado correspondiente.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer N números del usuario</li>
-                <li>Calcular suma total y promedio</li>
-                <li>Encontrar valor máximo y mínimo</li>
-                <li>Contar números pares e impares</li>
-                <li>Contar números positivos, negativos y ceros</li>
-                <li>Mostrar todas las estadísticas calculadas</li>
-
+                <li>Leer K (número de veces que se calculará la función)</li>
+                <li>Ejecutar ciclo I ← 1 hasta I ≤ K: leer X, Y, Z</li>
+                <li>Evaluar condiciones: Si X > 0 ∧ Y > 0 ∧ Z > 0 → F ← Z!/Y!, sino si X > 0 → F ← X!, sino F ← 1</li>
+                <li>Mostrar F para cada iteración</li>
+                <li>Implementar función auxiliar para calcular factoriales</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
-N: 5
-Números: 12 -5 0 8 -3
+========================================
+Función F(X, Y, Z) con Factoriales
+========================================
+Ingrese el número de veces que se calculará la función (K): 3
 
-// Salida:
-Suma: 12, Promedio: 2.4
-Mayor: 12, Menor: -5
-Pares: 3, Impares: 2
-Positivos: 2, Negativos: 2, Ceros: 1</pre>
+--- Cálculo #1 ---
+Ingrese el valor de X: 5
+Ingrese el valor de Y: 3
+Ingrese el valor de Z: 4
+El resultado de F(5, 3, 4) es: 8.0000
+  // 4!/3! = 24/6 = 4.0 (pero con todos positivos)
+
+--- Cálculo #2 ---
+Ingrese el valor de X: 4
+Ingrese el valor de Y: 0
+Ingrese el valor de Z: 2
+El resultado de F(4, 0, 2) es: 24.0000
+  // Solo X > 0, entonces F = 4! = 24
+
+--- Cálculo #3 ---
+Ingrese el valor de X: -2
+Ingrese el valor de Y: 5
+Ingrese el valor de Z: 3
+El resultado de F(-2, 5, 3) es: 1.0000
+  // X ≤ 0, entonces F = 1</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <p>Detalles importantes:</p>
             <ul>
-                <li>Usa un solo ciclo para calcular todas las estadísticas</li>
-                <li>Inicializa max/min con el primer número</li>
-                <li>Un número puede ser par/impar Y positivo/negativo/cero</li>
-                <li><strong>Tip:</strong> Usa variables descriptivas para cada contador</li>
-
+                <li>La función tiene 3 casos mutuamente excluyentes (if-else if-else)</li>
+                <li>Caso 1: X > 0 AND Y > 0 AND Z > 0 → F = Z! / Y!</li>
+                <li>Caso 2: X > 0 (pero no se cumple caso 1) → F = X!</li>
+                <li>Caso 3: Cualquier otro caso (X ≤ 0) → F = 1</li>
+                <li>Implementa una función auxiliar <code>calcularFactorial(int n)</code> que retorne <code>long</code></li>
+                <li>Usa <code>double</code> para F para manejar divisiones con decimales</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_3_39.png" alt="Diagrama de Flujo - Análisis Estadístico de Números" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_3_39.png?v=20251208" alt="Diagrama de Flujo - Función F(X, Y, Z) con Factoriales" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
                 <em>Diagrama de flujo del algoritmo</em>

@@ -1,46 +1,51 @@
-digraph problema_ps_3_39 {
+digraph FuncionFactoriales {
     rankdir=TB;
-    node [shape=box, style=rounded];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
     
-    inicio [label="INICIO", shape=ellipse, style=filled, fillcolor=lightgreen];
-    leer_k [label="Leer K"];
-    iniciar_i [label="I ← 1"];
+    // Nodos
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
+    leerK [label="Leer K", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    decisionI [label="I ≤ K", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    leerXYZ [label="Leer X, Y, Z", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
     
-    cond_i [label="I ≤ K", shape=diamond, style=filled, fillcolor=lightyellow];
-    leer_xyz [label="Leer X, Y, Z"];
+    // Condición 1: X > 0 AND Y > 0 AND Z > 0
+    cond1 [label="X > 0 ∧\nY > 0 ∧\nZ > 0", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    calcZY [label="F ← Z! / Y!", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    cond1 [label="X > 0 ∧\nY > 0 ∧\nZ > 0", shape=diamond, style=filled, fillcolor=lightyellow];
-    calc_factorial_zy [label="F ← Z! / Y!"];
+    // Condición 2: X > 0 (si no cumple condición 1)
+    cond2 [label="X > 0", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    calcX [label="F ← X!", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    cond2 [label="X > 0", shape=diamond, style=filled, fillcolor=lightyellow];
-    calc_factorial_x [label="F ← X!"];
+    // Caso 3: cualquier otro caso
+    calcUno [label="F ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    calc_uno [label="F ← 1"];
+    // Convergencia y continuación
+    conector [label="", shape=circle, width=0.3, height=0.3, fillcolor="#ADD8E6", color=black];
+    escribir [label="Escribir\nF", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    incrementar [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
     
-    imprimir [label="Imprimir F"];
-    incrementar [label="I ← I + 1"];
+    // Conexiones
+    inicio -> leerK;
+    leerK -> initI;
+    initI -> decisionI;
+    decisionI -> leerXYZ [label="Sí"];
+    decisionI -> fin [label="No"];
     
-    fin [label="FIN", shape=ellipse, style=filled, fillcolor=lightcoral];
-    
-    inicio -> leer_k;
-    leer_k -> iniciar_i;
-    iniciar_i -> cond_i;
-    
-    cond_i -> leer_xyz [label="Sí"];
-    cond_i -> fin [label="No"];
-    
-    leer_xyz -> cond1;
-    
-    cond1 -> calc_factorial_zy [label="Sí"];
+    leerXYZ -> cond1;
+    cond1 -> calcZY [label="Sí"];
     cond1 -> cond2 [label="No"];
     
-    cond2 -> calc_factorial_x [label="Sí"];
-    cond2 -> calc_uno [label="No"];
+    cond2 -> calcX [label="Sí"];
+    cond2 -> calcUno [label="No"];
     
-    calc_factorial_zy -> imprimir;
-    calc_factorial_x -> imprimir;
-    calc_uno -> imprimir;
+    calcZY -> conector;
+    calcX -> conector;
+    calcUno -> conector;
     
-    imprimir -> incrementar;
-    incrementar -> cond_i;
+    conector -> escribir;
+    escribir -> incrementar;
+    incrementar -> decisionI;
 }
