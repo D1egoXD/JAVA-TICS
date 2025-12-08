@@ -8,22 +8,22 @@ digraph CalculoImpuestos {
     start [label="INICIO", shape=oval, fillcolor="#90EE90", style="filled", width=1.5, height=0.8];
 
     // Nodo de entrada - leer PREBAS
-    readPrebas [label="PREBAS", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
+    readPrebas [label="Leer PREBAS", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
 
     // Primera decisión: PREBAS > 500
-    decision1 [label="PREBAS\n> 500", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.8];
+    decision1 [label="PREBAS\n> 500?", shape=diamond, fillcolor="#ADD8E6", style="filled", width=1.8];
 
     // Cálculo IMP para > 500
     calcImp500 [label="IMP ← 20*0.30 +\n(PREBAS-40)*0.50", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Segunda decisión: PREBAS > 40
-    decision2 [label="PREBAS\n> 40", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.8];
+    decision2 [label="PREBAS\n> 40?", shape=diamond, fillcolor="#ADD8E6", style="filled", width=1.8];
 
     // Cálculo IMP para > 40
     calcImp40 [label="IMP ← 20*0.30 +\n(PREBAS-40)*0.40", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Tercera decisión: PREBAS > 20
-    decision3 [label="PREBAS\n> 20", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.8];
+    decision3 [label="PREBAS\n> 20?", shape=diamond, fillcolor="#ADD8E6", style="filled", width=1.8];
 
     // Cálculo IMP para > 20
     calcImp20 [label="IMP ← (PREBAS-20)\n*0.30", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
@@ -38,10 +38,10 @@ digraph CalculoImpuestos {
     calcPretot [label="PRETOT ← PREBAS + IMP", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de salida
-    writeOutput [label="PREBAS, PRETOT", shape=egg, fillcolor="#FFFACD", style="filled"];
+    writeOutput [label="Escribir PREBAS, PRETOT", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
 
     // Nodo final (óvalo rojo/coral)
-    end [label="INICIO", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
+    end [label="FIN", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
 
     // Conexiones
     start -> readPrebas;
