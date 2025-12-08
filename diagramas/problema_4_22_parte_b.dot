@@ -4,16 +4,16 @@ digraph Inventario_Parte_B {
     edge [fontname="Arial", fontsize=9];
 
     // Nodos
-    conectorMayor [label="MAYOR", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    inicializar [label="MCA ← CAN[0]\nMPR ← PRO[0]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    conectorMayor [label="MAYOR", shape=cds, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    inicializar [label="MCA ← CAN[1]\nMPR ← PRO[1]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    initI [label="I ← 2", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     converge1 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
-    ciclo [label="I < N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    comparacion [label="MCA < CAN[I]\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    ciclo [label="I ≤ N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    comparacion [label="MCA < CAN[I]", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
     actualizar [label="MCA ← CAN[I]\nMPR ← PRO[I]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     incremento [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    msgMayor [label="Escribir\n\"La clave del producto\ncon mayor existencia es\",\nMPR", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
-    conectorPedido [label="PEDIDO", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    msgMayor [label="\"La clave del producto que tiene la\nmayor existencia es\", MPR", shape=box, fillcolor="#FFFACD", color=black, fontcolor=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
 
     // Conexiones
     conectorMayor -> inicializar;
@@ -26,5 +26,5 @@ digraph Inventario_Parte_B {
     comparacion -> incremento [label="No"];
     actualizar -> incremento;
     incremento -> converge1;
-    msgMayor -> conectorPedido;
+    msgMayor -> fin;
 }

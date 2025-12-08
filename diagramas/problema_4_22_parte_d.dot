@@ -4,19 +4,18 @@ digraph Inventario_Parte_D {
     edge [fontname="Arial", fontsize=9];
 
     // Nodos
-    conectorEliminar [label="ELIMINAR", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    initI [label="I ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    conectorEliminar [label="ELIMINAR", shape=cds, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     converge1 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
-    cicloI [label="I < N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    condicionCero [label="CAN[I] = 0\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    cicloI [label="I ≤ N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    condicionCero [label="CAN[I] = 0", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
     initJ [label="J ← I", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     converge2 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
-    cicloJ [label="J < N - 1\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    cicloJ [label="J ≤ N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
     desplazar [label="PRO[J] ← PRO[J + 1]\nCAN[J] ← CAN[J + 1]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     incrementoJ [label="J ← J + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     decrementarN [label="N ← N - 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     incrementoI [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    msgInventario [label="Escribir\n\"Inventario actualizado\"", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
     fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
 
     // Conexiones
@@ -24,7 +23,7 @@ digraph Inventario_Parte_D {
     initI -> converge1;
     converge1 -> cicloI;
     cicloI -> condicionCero [label="Si"];
-    cicloI -> msgInventario [label="No"];
+    cicloI -> fin [label="No"];
     condicionCero -> initJ [label="Si"];
     condicionCero -> incrementoI [label="No"];
     initJ -> converge2;
@@ -35,5 +34,4 @@ digraph Inventario_Parte_D {
     incrementoJ -> converge2;
     decrementarN -> converge1;
     incrementoI -> converge1;
-    msgInventario -> fin;
 }

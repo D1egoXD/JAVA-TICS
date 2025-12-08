@@ -5,17 +5,19 @@ digraph Inventario_Parte_A {
 
     // Nodos
     inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
-    msgN [label="Escribir\n\"Ingrese el número\nde productos\"", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
-    leerN [label="Leer N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
-    validacion [label="N ≥ 1 y\nN ≤ 100\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    initI [label="I ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    msgN [label="\"Ingrese el número\nde productos\"", shape=box, fillcolor="#FFFACD", color=black, fontcolor=black];
+    leerN [label="N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    validacion [label="N ≥ 1\ny\nN ≤ 100", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     converge1 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
-    ciclo [label="I < N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    msgDatos [label="Escribir\n\"Ingrese clave y\ncantidad\"", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
-    leerDatos [label="Leer PRO[I],\nCAN[I]", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    ciclo [label="I ≤ N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    msgDatos [label="\"Ingrese la clave del\nproducto y la cantidad\"", shape=box, fillcolor="#FFFACD", color=black, fontcolor=black];
+    leerDatos [label="PRO[I], CAN[I]", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
     incremento [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
-    msgError [label="Escribir\n\"Error en el dato\"", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
-    conectorMayor [label="MAYOR", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    msgError [label="\"Error en el dato\"", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    conectorMayor [label="MAYOR", shape=cds, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    conectorPedido [label="PEDIDO", shape=cds, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    conectorEliminar [label="ELIMINAR", shape=cds, fillcolor="#ADD8E6", color=black, fontcolor=black];
     fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
 
     // Conexiones
@@ -31,5 +33,8 @@ digraph Inventario_Parte_A {
     msgDatos -> leerDatos;
     leerDatos -> incremento;
     incremento -> converge1;
+    conectorMayor -> conectorPedido;
+    conectorPedido -> conectorEliminar;
     msgError -> fin;
+    conectorEliminar -> fin;
 }
