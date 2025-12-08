@@ -33,4 +33,17 @@ public class ejemplo_1_13_test {
         // (8.5 + 9.5 + 7.0 + 10.0 + 8.0) / 5 = 43 / 5 = 8.6
         assertEquals(8.6, promedio, 0.001, "El promedio de 8.5,9.5,7,10,8 debería ser 8.6");
     }
+
+        @Test
+    void testCalcularEnteros() {
+        // Arrange
+        ejemplo_1_13 calculator = new ejemplo_1_13();
+        
+        // Act
+        double promedio = calculator.calcularPromedio(1, 2, 3, 4, 5);
+        
+        // Assert
+        // (1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3.0
+        assertEquals(3.0, promedio, 0.001, "El promedio de 1,2,3,4,5 debería ser 3.0");
+    }
 }

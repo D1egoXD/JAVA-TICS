@@ -17,7 +17,7 @@ digraph PromedioCalificaciones {
     process [label="PRO ← (CAL1 + CAL2 +\nCAL3 + CAL4 + CAL5) / 5", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de salida (egg - Símbolo de Documento Impreso)
-    output [label="Escribir MAT, PRO", shape=egg, fillcolor="#FFFACD", style="filled"];
+    output [label="Imprimir MAT, PRO", shape=egg, fillcolor="#FFFACD", style="filled"];
 
     // Nodo final (óvalo rojo/coral - Símbolo de Fin)
     end [label="FIN", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
