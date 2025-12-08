@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contar Pares e Impares - Ejercicios Java</title>
-    <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <title>PS 3.3 - Contar Pares e Impares - Ejercicios Java</title>
+    <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
 </head>
 <body>
 <div class="container">
@@ -15,50 +15,59 @@
         </div>
 
         <div class="exercise-description">
-            <p>Reforzarás el uso del operador módulo (%) para determinar paridad. Practicarás el conteo condicional, el manejo de múltiples contadores y la clasificación de datos según criterios específicos.</p>
+            <p>Desarrolla un programa que cuente cuántos números son pares e impares. El algoritmo lee N, inicializa PARES ← 0 e IMPARES ← 0, y mediante un ciclo <code>for (I ← 1; I ≤ N; I ← I + 1)</code> lee cada NUM y verifica si NUM % 2 = 0 para incrementar PARES o IMPARES.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer cantidad N de números</li>
-                <li>Inicializar contadores <code>pares = 0</code> e <code>impares = 0</code></li>
-                <li>Para cada número: verificar si <code>numero % 2 == 0</code></li>
-                <li>Incrementar contador de pares o impares según corresponda</li>
-                <li>Mostrar cantidad de números pares e impares</li>
-
+                <li>Leer N (cantidad de números)</li>
+                <li>Inicializar PARES ← 0 e IMPARES ← 0</li>
+                <li>Ejecutar ciclo I ← 1 hasta I ≤ N: leer NUM, si NUM % 2 = 0 entonces PARES ← PARES + 1, sino IMPARES ← IMPARES + 1</li>
+                <li>Mostrar PARES e IMPARES</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
-Cantidad: 6
-Números: 12 7 8 15 20 9
+========================================
+Contador de Números Pares e Impares
+========================================
+¿Cuántos números desea ingresar? N = 6
+
+Ingrese los 6 números:
+Número 1: 12
+Número 2: 7
+Número 3: 8
+Número 4: 15
+Número 5: 20
+Número 6: 9
 
 // Salida:
-======================================
-Números pares: 3
-Números impares: 3
-======================================</pre>
+========================================
+Resultados:
+Números PARES: 3
+Números IMPARES: 3
+========================================</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <p>Detalles importantes:</p>
             <ul>
-                <li>Un número es par si <code>n % 2 == 0</code></li>
+                <li>Un número es par si <code>num % 2 == 0</code>, impar en caso contrario</li>
+                <li>El operador módulo <code>%</code> devuelve el residuo de la división</li>
+                <li>El cero se considera PAR (0 % 2 = 0)</li>
+                <li>Verifica que PARES + IMPARES = N al final</li>
                 <li>Los números negativos también pueden ser pares o impares</li>
-                <li>Verifica que <code>pares + impares == N</code></li>
-                <li><strong>Tip:</strong> El 0 se considera par</li>
-
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_3_3.png" alt="Diagrama de Flujo - Contar Pares e Impares" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_3_3.png?v=20251208" alt="Diagrama de Flujo - Contar Pares e Impares" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
                 <em>Diagrama de flujo del algoritmo</em>
