@@ -19,25 +19,47 @@
         </div>
 
         <div class="requirements-list">
-            <h3>📋 Especificación del Problema</h3>
-            <h4>Datos:</h4>
+            <h3>Requisitos</h3>
             <ul>
-                <li><strong>N:</strong> Variable de tipo entero que indica el número de enteros que se ingresan</li>
-                <li><strong>NUM<sub>i</sub>:</strong> Variable de tipo entero que representa el número i que se ingresa (1 ≤ i ≤ N)</li>
-            </ul>
-            
-            <h4>Variables del Algoritmo:</h4>
-            <ul>
-                <li><strong>I:</strong> Variable de control del ciclo (contador)</li>
-                <li><strong>N y NUM:</strong> Variables de tipo entero</li>
-                <li><strong>MAY:</strong> Variable de tipo entero que almacena el máximo valor. Se inicializa con un valor negativo alto (-100 000) para que tome el valor del primer número que se ingresa</li>
-                <li><strong>MEN:</strong> Variable de tipo entero que almacena el mínimo valor. Se inicializa con un valor alto (100 000) para que tome el valor del primer número que se ingresa</li>
+                <li>Leer la cantidad N de números a procesar</li>
+                <li>Inicializar <code>MAY</code> con -100 000 y <code>MEN</code> con 100 000</li>
+                <li>Usar un ciclo que se repita N veces (variable de control <code>I</code>)</li>
+                <li>En cada iteración, leer un número (<code>NUM</code>)</li>
+                <li>Comparar NUM con MAY: si NUM > MAY, actualizar MAY ← NUM</li>
+                <li>Comparar NUM con MEN: si NUM < MEN, actualizar MEN ← NUM</li>
+                <li>Incrementar el contador <code>I</code></li>
+                <li>Al finalizar el ciclo, mostrar MAY y MEN</li>
             </ul>
         </div>
 
         <div class="example-section">
-            <h3>💡 Ejemplo de Ejecución</h3>
-            <p>Tabla de seguimiento para N = 12 números:</p>
+            <h3>Ejemplo de uso esperado</h3>
+            <pre class="code-block">// Entrada:
+Cantidad de números (N): 5
+Números: 170, 44, 815, 1700, 38
+
+// Salida:
+===================================
+El número MAYOR es: 1700
+El número MENOR es: 38
+===================================</pre>
+        </div>
+
+        <div class="notes-section">
+            <h3>Notas rápidas</h3>
+            <p>Asegúrate de:</p>
+            <ul>
+                <li>Inicializar MAY con un valor muy bajo (-100 000) para que cualquier número lo supere</li>
+                <li>Inicializar MEN con un valor muy alto (100 000) para que cualquier número sea menor</li>
+                <li>Las comparaciones son independientes: ambas se evalúan en cada iteración</li>
+                <li>El ciclo debe ejecutarse exactamente N veces</li>
+                <li><strong>Tip:</strong> Usa la Tabla 3.8 para verificar tu algoritmo paso a paso</li>
+            </ul>
+        </div>
+
+        <div class="requirements-list">
+            <h3>📊 Tabla de Seguimiento (Tabla 3.8)</h3>
+            <p>Ejemplo de ejecución con N = 12:</p>
             <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
                 <thead style="background-color: var(--color-primary-light);">
                     <tr>
@@ -114,18 +136,7 @@
                     </tr>
                 </tbody>
             </table>
-            <p><strong>Resultado final:</strong> MAY = 1700, MEN = 14</p>
-        </div>
-
-        <div class="notes-section">
-            <h3>📌 Conceptos Clave</h3>
-            <ul>
-                <li><strong>Inicialización de extremos:</strong> MAY se inicializa con -100 000 (valor muy bajo) y MEN con 100 000 (valor muy alto) para asegurar que cualquier número ingresado los actualice correctamente</li>
-                <li><strong>Estructura repetitiva:</strong> El ciclo se ejecuta N veces, procesando cada número ingresado</li>
-                <li><strong>Condicionales independientes:</strong> Se evalúan dos condiciones en cada iteración: si NUM es mayor que MAY y si NUM es menor que MEN</li>
-                <li><strong>Variable de control:</strong> I controla el número de iteraciones del ciclo (de 1 hasta N)</li>
-                <li><strong>Actualización condicional:</strong> MAY y MEN solo se actualizan cuando se encuentra un valor más extremo</li>
-            </ul>
+            <p style="text-align: center; margin-top: 10px;"><strong>Resultado final:</strong> MAY = 1700, MEN = 14</p>
         </div>
 
         <div class="requirements-list">

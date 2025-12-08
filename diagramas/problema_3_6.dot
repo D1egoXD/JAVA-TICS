@@ -11,7 +11,7 @@ digraph MayorMenor {
     init [label="MAY ← -100 000\nMEN ← 100 000", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Lectura de N
-    readN [label="N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    readN [label="Leer N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
 
     // Inicialización del contador
     initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
@@ -23,7 +23,7 @@ digraph MayorMenor {
     decisionCiclo [label="I ≤ N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Lectura de NUM
-    readNum [label="NUM", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    readNum [label="Leer NUM", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
 
     // Primera comparación: NUM > MAY
     decisionMayor [label="NUM > MAY\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
@@ -37,7 +37,7 @@ digraph MayorMenor {
     increment [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Escritura de resultados
-    writeOutput [label="MAY, MEN", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    writeOutput [label="Escribir MAY, MEN", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
 
     // Nodo final
     end [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
