@@ -3,62 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Factorial de un Número - Ejercicios Java</title>
-    <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <title>PS 3.5 - Suma de Serie Armónica - Ejercicios Java</title>
+    <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
 </head>
 <body>
 <div class="container">
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">PS 3.5</span>
-            <h2>Factorial de un Número</h2>
+            <h2>Suma de Serie Armónica</h2>
         </div>
 
         <div class="exercise-description">
-            <p>En este ejercicio trabajarás con productos acumulativos. Aprenderás a implementar algoritmos matemáticos de manera iterativa, manejar números grandes y validar condiciones de entrada.</p>
+            <p>Desarrolla un programa que calcule la suma de la serie armónica: 1 + 1/2 + 1/3 + ... + 1/N. El algoritmo lee N, inicializa SUMA ← 0.0, y mediante un ciclo <code>for (I ← 1; I ≤ N; I ← I + 1)</code> acumula SUMA ← SUMA + 1.0/I.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer un número entero positivo N</li>
-                <li>Validar que N >= 0</li>
-                <li>Inicializar <code>factorial = 1</code></li>
-                <li>Usar ciclo desde i=1 hasta i<=N</li>
-                <li>En cada iteración: <code>factorial = factorial * i</code></li>
-                <li>Mostrar el resultado (considerar <code>long</code> para N > 12)</li>
-
+                <li>Leer N (cantidad de términos de la serie)</li>
+                <li>Inicializar SUMA ← 0.0 (usar double para decimales)</li>
+                <li>Ejecutar ciclo I ← 1 hasta I ≤ N: SUMA ← SUMA + 1.0/I, luego I ← I + 1</li>
+                <li>Mostrar SUMA con 4 decimales</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
-N: 5
+========================================
+Suma de Serie Armónica
+Serie: 1 + 1/2 + 1/3 + ... + 1/N
+========================================
+Ingrese el valor de N: 5
 
 // Salida:
-======================================
-5! = 120
-(5 × 4 × 3 × 2 × 1 = 120)
-======================================</pre>
+========================================
+La suma de la serie para N = 5 es: 2.2833
+========================================
+
+Desglose de la serie:
+1/1 + 1/2 + 1/3 + 1/4 + 1/5
+1.0000 + 0.5000 + 0.3333 + 0.2500 + 0.2000 = 2.2833</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <p>Detalles importantes:</p>
             <ul>
-                <li>0! = 1 por definición</li>
-                <li>Usa <code>long</code> ya que factorial crece muy rápido</li>
-                <li>Factoriales > 20 exceden el rango de <code>long</code></li>
-                <li><strong>Tip:</strong> Considera usar <code>BigInteger</code> para valores grandes</li>
-
+                <li>La serie armónica es: 1 + 1/2 + 1/3 + 1/4 + ... + 1/N</li>
+                <li>Usa <code>double</code> para SUMA (no int) para mantener decimales</li>
+                <li>Divide <code>1.0 / i</code> (no <code>1 / i</code>) para evitar división entera</li>
+                <li>La serie armónica crece lentamente (diverge a infinito pero despacio)</li>
+                <li>Para N = 10: SUMA ≈ 2.9290, para N = 100: SUMA ≈ 5.1874</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_3_5.png" alt="Diagrama de Flujo - Factorial de un Número" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_3_5.png?v=20251208" alt="Diagrama de Flujo - Suma de Serie Armónica" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
                 <em>Diagrama de flujo del algoritmo</em>

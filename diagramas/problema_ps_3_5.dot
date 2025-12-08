@@ -1,39 +1,27 @@
-digraph problema_ps_3_5 {
+digraph SerieArmonica {
     rankdir=TB;
-    node [shape=box, style=filled];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
     
     // Nodos
-    inicio [label="INICIO", fillcolor=lightgreen, shape=ellipse];
-    leer_n [label="Leer N", fillcolor=lightyellow, shape=parallelogram];
-    init_suma [label="SUMA ← 0.0", fillcolor=lightblue];
-    init_i [label="I ← 1", fillcolor=lightblue];
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
+    leerN [label="Leer N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    initSuma [label="SUMA ← 0.0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    decision [label="I ≤ N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    calcular [label="SUMA ← SUMA + 1.0/I", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    incrementar [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    escribir [label="Escribir\nSUMA", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
     
-    cond_ciclo [label="I ≤ N?", fillcolor=lightblue, shape=diamond];
-    
-    calc_termino [label="SUMA ← SUMA + 1.0/I", fillcolor=lightblue];
-    inc_i [label="I ← I + 1", fillcolor=lightblue];
-    
-    mostrar [label="Mostrar SUMA", fillcolor=lightyellow, shape=parallelogram];
-    fin [label="FIN", fillcolor=lightcoral, shape=ellipse];
-    
-    // Conectores invisibles para mejor alineación
-    conector1 [label="", shape=point, width=0, fillcolor=white];
-    conector2 [label="", shape=point, width=0, fillcolor=white];
-    
-    // Flujo
-    inicio -> leer_n;
-    leer_n -> init_suma;
-    init_suma -> init_i;
-    init_i -> cond_ciclo;
-    
-    cond_ciclo -> calc_termino [label="Sí"];
-    calc_termino -> inc_i;
-    inc_i -> conector1 [arrowhead=none];
-    conector1 -> cond_ciclo;
-    
-    cond_ciclo -> mostrar [label="No"];
-    mostrar -> fin;
-    
-    // Alineación
-    {rank=same; conector1; cond_ciclo;}
+    // Conexiones
+    inicio -> leerN;
+    leerN -> initSuma;
+    initSuma -> initI;
+    initI -> decision;
+    decision -> calcular [label="Sí"];
+    decision -> escribir [label="No"];
+    calcular -> incrementar;
+    incrementar -> decision;
+    escribir -> fin;
 }
