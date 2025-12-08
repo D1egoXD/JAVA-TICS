@@ -1,33 +1,62 @@
-digraph problema_ps_5_6 {
+digraph PersonalAcademico {
     rankdir=TB;
-    node [shape=box, style=rounded];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+
+    // Nodos principales
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
+    leerN [label="Leer N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    validarN [label="1 ≤ N ≤ 100", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    mensajeError [label="Escribir\n'Error: N debe\nestar entre\n1 y 100'", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
     
-    inicio [label="INICIO", shape=ellipse, style=filled, fillcolor=lightgreen];
-    leer_n [label="Leer N"];
+    // Lectura de datos (ciclo)
+    initI1 [label="I ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    decisionI1 [label="I < N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    leerDatos [label="Leer NOMBRES[I],\nEDADES[I],\nSEXOS[I]", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    incrementI1 [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    leer_datos [label="Para I = 1 hasta N:\nLeer NOMBRE[I],\nEDAD[I], SEXO[I]"];
+    // a) Calcular edad promedio
+    calcPromedio [label="SUMA_EDADES ← 0\nPara I de 0 a N-1:\n  SUMA_EDADES ← SUMA_EDADES + EDADES[I]\nEDAD_PROMEDIO ← SUMA_EDADES / N", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    calc_promedio [label="SUMA ← 0\nPara I = 1 hasta N:\n  SUMA ← SUMA + EDAD[I]\nPROMEDIO ← SUMA / N"];
+    // b) Encontrar profesor más joven
+    buscarJoven [label="INDICE_JOVEN ← 0\nPara I de 1 a N-1:\n  Si EDADES[I] < EDADES[INDICE_JOVEN]\n    INDICE_JOVEN ← I\nNOMBRE_JOVEN ← NOMBRES[INDICE_JOVEN]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    buscar_joven [label="MIN ← EDAD[1]\nJOVEN ← 1\nPara I = 2 hasta N:\n  Si EDAD[I] < MIN\n    MIN ← EDAD[I]\n    JOVEN ← I"];
+    // c) Encontrar profesor de más edad
+    buscarViejo [label="INDICE_VIEJO ← 0\nPara I de 1 a N-1:\n  Si EDADES[I] > EDADES[INDICE_VIEJO]\n    INDICE_VIEJO ← I\nNOMBRE_VIEJO ← NOMBRES[INDICE_VIEJO]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    buscar_viejo [label="MAX ← EDAD[1]\nVIEJO ← 1\nPara I = 2 hasta N:\n  Si EDAD[I] > MAX\n    MAX ← EDAD[I]\n    VIEJO ← I"];
+    // d) Contar profesoras con edad mayor al promedio
+    contarProfesoras [label="CONT_PROFESORAS ← 0\nPara I de 0 a N-1:\n  Si SEXOS[I] = 'F' ∧\n     EDADES[I] > EDAD_PROMEDIO\n    CONT_PROFESORAS ← CONT_PROFESORAS + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    contar_f [label="CONT_F ← 0\nPara I = 1 hasta N:\n  Si SEXO[I] = 'F' ∧\n     EDAD[I] > PROMEDIO\n    CONT_F ← CONT_F + 1"];
+    // e) Contar profesores con edad menor al promedio
+    contarProfesores [label="CONT_PROFESORES ← 0\nPara I de 0 a N-1:\n  Si SEXOS[I] = 'M' ∧\n     EDADES[I] < EDAD_PROMEDIO\n    CONT_PROFESORES ← CONT_PROFESORES + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    contar_m [label="CONT_M ← 0\nPara I = 1 hasta N:\n  Si SEXO[I] = 'M' ∧\n     EDAD[I] < PROMEDIO\n    CONT_M ← CONT_M + 1"];
+    // Salida
+    escribirResultados [label="Escribir\nEDAD_PROMEDIO,\nNOMBRE_JOVEN,\nNOMBRE_VIEJO,\nCONT_PROFESORAS,\nCONT_PROFESORES", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    conector [label="", shape=circle, width=0.3, height=0.3, fillcolor="#ADD8E6", color=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
     
-    imprimir [label="Escribir:\nPROMEDIO\nNOMBRE[JOVEN]\nNOMBRE[VIEJO]\nCONT_F\nCONT_M"];
+    // Conexiones principales
+    inicio -> leerN;
+    leerN -> validarN;
+    validarN -> initI1 [label="Sí"];
+    validarN -> mensajeError [label="No"];
     
-    fin [label="FIN", shape=ellipse, style=filled, fillcolor=lightcoral];
+    // Ciclo de lectura
+    initI1 -> decisionI1;
+    decisionI1 -> leerDatos [label="Sí"];
+    decisionI1 -> calcPromedio [label="No"];
+    leerDatos -> incrementI1;
+    incrementI1 -> decisionI1;
     
-    inicio -> leer_n;
-    leer_n -> leer_datos;
-    leer_datos -> calc_promedio;
-    calc_promedio -> buscar_joven;
-    buscar_joven -> buscar_viejo;
-    buscar_viejo -> contar_f;
-    contar_f -> contar_m;
-    contar_m -> imprimir;
-    imprimir -> fin;
+    // Procesamiento secuencial
+    calcPromedio -> buscarJoven;
+    buscarJoven -> buscarViejo;
+    buscarViejo -> contarProfesoras;
+    contarProfesoras -> contarProfesores;
+    contarProfesores -> escribirResultados;
+    
+    // Fin
+    escribirResultados -> conector;
+    mensajeError -> conector;
+    conector -> fin;
 }

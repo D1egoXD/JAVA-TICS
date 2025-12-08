@@ -3,66 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programación Modular - Ejercicios Java</title>
-    <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <title>PS 5.6 - Sistema de Personal Académico - Ejercicios Java</title>
+    <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
 </head>
 <body>
 <div class="container">
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">PS 5.6</span>
-            <h2>Programación Modular</h2>
+            <h2>Sistema de Personal Académico</h2>
         </div>
 
         <div class="exercise-description">
-            <p>Aprenderás a descomponer problemas complejos en subprogramas reutilizables. Practicarás el diseño modular, el paso de parámetros, valores de retorno y la organización de código en funciones bien definidas.</p>
+            <p>Desarrolla un programa que analice datos de profesores usando arreglos paralelos. El algoritmo valida 1 ≤ N ≤ 100, lee nombres, edades y sexo de N profesores, calcula la edad promedio, identifica al más joven y al de más edad, y cuenta profesoras mayores al promedio y profesores menores al promedio.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Identificar tareas repetitivas y crear funciones para ellas</li>
-                <li>Implementar funciones con parámetros y valores de retorno apropiados</li>
-                <li>Implementar procedimientos (void) para tareas sin retorno</li>
-                <li>Usar convenciones de nombres descriptivos para funciones</li>
-                <li>Documentar funciones con comentarios JavaDoc</li>
-                <li>Llamar funciones desde main y otros métodos</li>
-
+                <li>Leer N (validar 1 ≤ N ≤ 100)</li>
+                <li>Crear tres arreglos paralelos: nombres[], edades[], sexos[]</li>
+                <li>Leer datos de N profesores con ciclo (I de 0 a N-1)</li>
+                <li>Calcular edad promedio: sumar todas las edades y dividir entre N</li>
+                <li>Encontrar profesor más joven: buscar índice con edad mínima</li>
+                <li>Encontrar profesor de más edad: buscar índice con edad máxima</li>
+                <li>Contar profesoras (sexo='F') con edad mayor al promedio</li>
+                <li>Contar profesores (sexo='M') con edad menor al promedio</li>
+                <li>Mostrar los 5 resultados calculados</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
-            <pre class="code-block">// Funciones modulares:
-public static int sumar(int a, int b) {
-    return a + b;
-}
+            <pre class="code-block">// Entrada:
+========================================
+Sistema de Personal Académico
+========================================
+Ingrese el número de profesores (N) [1-100]: 3
 
-public static void mostrarResultado(int res) {
-    System.out.println(&quot;Resultado: &quot; + res);
-}
+--- Ingresando datos del profesor #1 ---
+Nombre: Ana García
+Edad: 35
+Sexo (F/M): F
 
-// Uso:
-int resultado = sumar(5, 3);
-mostrarResultado(resultado);</pre>
+--- Ingresando datos del profesor #2 ---
+Nombre: Carlos López
+Edad: 42
+Sexo (F/M): M
+
+--- Ingresando datos del profesor #3 ---
+Nombre: María Torres
+Edad: 28
+Sexo (F/M): F
+
+// Salida:
+================ RESULTADOS ================
+a) Edad promedio del grupo: 35.00 años
+b) Profesor más joven: María Torres
+c) Profesor de más edad: Carlos López
+d) Número de profesoras con edad mayor al promedio: 0
+e) Número de profesores con edad menor al promedio: 0
+============================================</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <p>Detalles importantes:</p>
             <ul>
-                <li>Función: retorna un valor, Procedimiento: no retorna (void)</li>
-                <li>Parámetros por valor: Java pasa copias de primitivos</li>
-                <li>Usa nombres verbales para funciones: <code>calcular</code>, <code>obtener</code></li>
-                <li><strong>Tip:</strong> Mantén funciones pequeñas y con un solo propósito</li>
-
+                <li>Los arreglos paralelos mantienen sincronización por índice: nombres[i], edades[i], sexos[i] corresponden al mismo profesor</li>
+                <li>Para buscar mínimo/máximo: inicializar con índice 0 y recorrer desde índice 1</li>
+                <li>Usar <code>char</code> para sexo y comparar con 'F' o 'M'</li>
+                <li>La edad promedio se calcula primero porque se usa en los contadores d) y e)</li>
+                <li>Condición d): <code>sexos[i] == 'F' && edades[i] > edadPromedio</code></li>
+                <li>Condición e): <code>sexos[i] == 'M' && edades[i] < edadPromedio</code></li>
+                <li>Usa <code>scanner.nextLine()</code> después de <code>nextInt()</code> para consumir el salto de línea</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_5_6.png" alt="Diagrama de Flujo - Programación Modular" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_5_6.png?v=20251208" alt="Diagrama de Flujo - Sistema de Personal Académico" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
                 <em>Diagrama de flujo del algoritmo</em>
