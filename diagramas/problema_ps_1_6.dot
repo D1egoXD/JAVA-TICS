@@ -1,19 +1,20 @@
-digraph problema_ps_1_6 {
+digraph FinanciamientoVehiculo {
     rankdir=TB;
-    node [shape=box, style=filled];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
 
     // Nodos
-    inicio [label="INICIO", shape=oval, fillcolor=lightgreen];
-    input_mon [label="MON", shape=parallelogram, fillcolor=lightyellow];
-    calc_eng [label="ENG ← MON * 0.35", fillcolor=lightblue];
-    calc_men [label="MEN ← (MON - ENG) / 18", fillcolor=lightblue];
-    output [label="ENG, MEN", shape=parallelogram, fillcolor=lightyellow];
-    fin [label="FIN", shape=oval, fillcolor=lightcoral];
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
+    leerMon [label="Leer MON", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    calcEng [label="ENG ← MON * 0.35", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    calcMen [label="MEN ← (MON - ENG) / 18", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    escribir [label="Escribir\nMON, ENG, MEN", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
 
     // Conexiones
-    inicio -> input_mon;
-    input_mon -> calc_eng;
-    calc_eng -> calc_men;
-    calc_men -> output;
-    output -> fin;
+    inicio -> leerMon;
+    leerMon -> calcEng;
+    calcEng -> calcMen;
+    calcMen -> escribir;
+    escribir -> fin;
 }

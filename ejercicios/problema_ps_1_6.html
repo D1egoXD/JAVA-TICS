@@ -11,58 +11,57 @@
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">PS 1.6</span>
-            <h2>Plan de Financiamiento Automotriz</h2>
+            <h2>Plan de Financiamiento Automotriz XGW</h2>
         </div>
 
         <div class="exercise-description">
-            <p>Aplicarás conceptos matemáticos en un contexto real de financiamiento. Practicarás el cálculo de porcentajes, divisiones y la presentación de resultados financieros formateados adecuadamente.</p>
+            <p>Construir un programa que calcule el plan de financiamiento de un vehículo. El programa debe calcular el <strong>enganche</strong> (35% del precio) y la <strong>mensualidad</strong> para 18 meses sobre el saldo restante.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer el monto total del vehículo</li>
-                <li>Calcular enganche: <code>monto * 0.35</code></li>
-                <li>Calcular saldo a financiar: <code>monto - enganche</code></li>
-                <li>Calcular mensualidad: <code>saldo / 18</code></li>
-                <li>Mostrar enganche, saldo y mensualidad con formato monetario</li>
-
+                <li>Leer el precio del vehículo (<code>MON</code>)</li>
+                <li>Calcular enganche: <code>ENG ← MON * 0.35</code> (35% del precio)</li>
+                <li>Calcular mensualidad: <code>MEN ← (MON - ENG) / 18</code> (saldo dividido en 18 meses)</li>
+                <li>Mostrar el enganche y la mensualidad</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
-Monto del vehículo: 300000
+Ingrese el precio del vehículo: $300000
 
 // Salida:
-======================================
-Monto del vehículo: $300,000.00
-Enganche (35%): $105,000.00
-Saldo a financiar: $195,000.00
-Mensualidad (18 meses): $10,833.33
-======================================</pre>
+========================================
+PLAN DE FINANCIAMIENTO XGW
+========================================
+Precio del vehículo: $300000.00
+Enganche (35%):     $105000.00
+Mensualidad (18):    $10833.33
+========================================</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
             <p>Asegúrate de:</p>
             <ul>
-                <li>35% = 0.35 en decimal</li>
+                <li>El enganche es el 35% del precio total: 0.35 en decimal</li>
+                <li>El saldo a financiar es: MON - ENG</li>
+                <li>La mensualidad se calcula dividiendo el saldo entre 18 meses</li>
                 <li>Usa <code>double</code> para evitar pérdida de decimales</li>
-                <li>Formatea con <code>String.format(&quot;$%,.2f&quot;, valor)</code></li>
-                <li><strong>Tip:</strong> Valida que el monto sea positivo</li>
-
+                <li>Formatea valores monetarios con <code>printf("$%.2f%n", valor)</code></li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_1_6.png" alt="Diagrama de Flujo - Plan de Financiamiento Automotriz" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_1_6.png?v=20251208" alt="Diagrama de Flujo - Plan de Financiamiento Automotriz" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
-                <em>Diagrama de flujo del algoritmo</em>
+                <em>Diagrama de flujo del cálculo de financiamiento</em>
             </p>
         </div>
 
