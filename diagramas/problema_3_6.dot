@@ -1,68 +1,72 @@
 digraph MayorMenor {
     // Configuración general
     rankdir=TB;
-    node [shape=box, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=10];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
     edge [fontname="Arial", fontsize=9];
 
     // Nodo inicial
-    start [label="INICIO", shape=ellipse, fillcolor=lightgreen];
+    start [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
 
     // Inicialización de variables
-    init [label="MAY ← -100000\nMEN ← 100000", shape=box, fillcolor=lightblue];
+    init [label="MAY ← -100 000\nMEN ← 100 000", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Lectura de N
-    read_n [label="Leer N", shape=parallelogram, fillcolor=lightyellow];
+    readN [label="N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
 
     // Inicialización del contador
-    init_i [label="I ← 1", shape=box, fillcolor=lightblue];
+    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+
+    // Convergencia antes del ciclo
+    converge1 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
 
     // Decisión del ciclo
-    decision_ciclo [label="I ≤ N?", shape=diamond, fillcolor=lightcyan];
+    decisionCiclo [label="I ≤ N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Lectura de NUM
-    read_num [label="Leer NUM", shape=parallelogram, fillcolor=lightyellow];
+    readNum [label="NUM", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
 
     // Primera comparación: NUM > MAY
-    decision_mayor [label="NUM > MAY?", shape=diamond, fillcolor=lightcyan];
-    update_may [label="MAY ← NUM", shape=box, fillcolor=lightblue];
+    decisionMayor [label="NUM > MAY\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    updateMay [label="MAY ← NUM", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Segunda comparación: NUM < MEN
-    decision_menor [label="NUM < MEN?", shape=diamond, fillcolor=lightcyan];
-    update_men [label="MEN ← NUM", shape=box, fillcolor=lightblue];
+    decisionMenor [label="NUM < MEN\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    updateMen [label="MEN ← NUM", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Incremento del contador
-    increment [label="I ← I + 1", shape=box, fillcolor=lightblue];
+    increment [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Escritura de resultados
-    write_output [label="Escribir MAY, MEN", shape=parallelogram, fillcolor=lightyellow];
+    writeOutput [label="MAY, MEN", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
 
     // Nodo final
-    end [label="FIN", shape=ellipse, fillcolor=lightcoral];
+    end [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
 
     // Conexiones principales
     start -> init;
-    init -> read_n;
-    read_n -> init_i;
-    init_i -> decision_ciclo;
+    init -> readN;
+    readN -> initI;
+    initI -> converge1;
+    converge1 -> decisionCiclo;
 
     // Ciclo principal
-    decision_ciclo -> read_num [label="Sí"];
-    decision_ciclo -> write_output [label="No"];
+    decisionCiclo -> readNum [label="Si"];
+    decisionCiclo -> writeOutput [label="No"];
 
     // Flujo dentro del ciclo
-    read_num -> decision_mayor;
+    readNum -> decisionMayor;
 
-    decision_mayor -> update_may [label="Sí"];
-    decision_mayor -> decision_menor [label="No"];
-    update_may -> decision_menor;
+    decisionMayor -> updateMay [label="Si"];
+    decisionMayor -> decisionMenor [label="No"];
+    updateMay -> decisionMenor;
 
-    decision_menor -> update_men [label="Sí"];
-    decision_menor -> increment [label="No"];
-    update_men -> increment;
+    decisionMenor -> updateMen [label="Si"];
+    decisionMenor -> increment [label="No"];
+    updateMen -> increment;
 
     // Regreso al inicio del ciclo
-    increment -> decision_ciclo;
+    increment -> converge1;
 
     // Final
-    write_output -> end;
+    writeOutput -> end;
 }

@@ -15,54 +15,126 @@
         </div>
 
         <div class="exercise-description">
-            <p>Este ejercicio refuerza el uso de ciclos y comparaciones en Java. Aprenderás a mantener valores acumulados durante iteraciones, a encontrar valores extremos en conjuntos de datos y a manejar variables de control eficientemente.</p>
+            <p>Construir un diagrama de flujo tal que dado N números enteros como dato, calcule el mayor y el menor de estos números. Este ejercicio refuerza el uso de <strong>estructuras repetitivas</strong> y <strong>condicionales anidadas</strong> para encontrar valores extremos en un conjunto de datos.</p>
         </div>
 
         <div class="requirements-list">
-            <h3>Requisitos</h3>
+            <h3>📋 Especificación del Problema</h3>
+            <h4>Datos:</h4>
             <ul>
-                <li>Leer la cantidad N de números a procesar</li>
-                <li>Inicializar variables <code>mayor</code> y <code>menor</code> con el primer número</li>
-                <li>Usar ciclo <code>for</code> o <code>while</code> para leer los N números</li>
-                <li>Actualizar <code>mayor</code> si se encuentra un número más grande</li>
-                <li>Actualizar <code>menor</code> si se encuentra un número más pequeño</li>
-                <li>Mostrar el mayor y menor valor encontrado</li>
-
+                <li><strong>N:</strong> Variable de tipo entero que indica el número de enteros que se ingresan</li>
+                <li><strong>NUM<sub>i</sub>:</strong> Variable de tipo entero que representa el número i que se ingresa (1 ≤ i ≤ N)</li>
+            </ul>
+            
+            <h4>Variables del Algoritmo:</h4>
+            <ul>
+                <li><strong>I:</strong> Variable de control del ciclo (contador)</li>
+                <li><strong>N y NUM:</strong> Variables de tipo entero</li>
+                <li><strong>MAY:</strong> Variable de tipo entero que almacena el máximo valor. Se inicializa con un valor negativo alto (-100 000) para que tome el valor del primer número que se ingresa</li>
+                <li><strong>MEN:</strong> Variable de tipo entero que almacena el mínimo valor. Se inicializa con un valor alto (100 000) para que tome el valor del primer número que se ingresa</li>
             </ul>
         </div>
 
         <div class="example-section">
-            <h3>Ejemplo de uso esperado</h3>
-            <pre class="code-block">// Entrada:
-Cantidad de números: 5
-Números: 45 12 78 23 67
-
-// Salida:
-======================================
-Mayor valor: 78
-Menor valor: 12
-======================================</pre>
+            <h3>💡 Ejemplo de Ejecución</h3>
+            <p>Tabla de seguimiento para N = 12 números:</p>
+            <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                <thead style="background-color: var(--color-primary-light);">
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 8px;">I</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">N</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">NUM</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">MAY</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">MEN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">1</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">12</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">-100 000</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">100 000</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">2</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">170</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">170</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">170</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">3</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">44</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">44</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">4</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">815</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">815</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">5</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">1700</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">1700</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">6</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">38</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">38</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">...</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">...</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">...</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">...</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">...</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">11</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">14</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">14</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">13</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">960</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">—</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Resultado final:</strong> MAY = 1700, MEN = 14</p>
         </div>
 
         <div class="notes-section">
-            <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <h3>📌 Conceptos Clave</h3>
             <ul>
-                <li>Inicializa mayor y menor con el <strong>primer número leído</strong>, no con 0</li>
-                <li>Usa operadores de comparación: <code>></code> y <code><</code></li>
-                <li>Valida que N sea al menos 1</li>
-                <li><strong>Tip:</strong> Puedes pedir el primer número antes del ciclo</li>
-
+                <li><strong>Inicialización de extremos:</strong> MAY se inicializa con -100 000 (valor muy bajo) y MEN con 100 000 (valor muy alto) para asegurar que cualquier número ingresado los actualice correctamente</li>
+                <li><strong>Estructura repetitiva:</strong> El ciclo se ejecuta N veces, procesando cada número ingresado</li>
+                <li><strong>Condicionales independientes:</strong> Se evalúan dos condiciones en cada iteración: si NUM es mayor que MAY y si NUM es menor que MEN</li>
+                <li><strong>Variable de control:</strong> I controla el número de iteraciones del ciclo (de 1 hasta N)</li>
+                <li><strong>Actualización condicional:</strong> MAY y MEN solo se actualizan cuando se encuentra un valor más extremo</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_3_6.png" alt="Diagrama de Flujo - Mayor y Menor de N Números" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_3_6.png?v=20251207" alt="Diagrama de Flujo - Mayor y Menor de N Números" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
-                <em>Diagrama de flujo del algoritmo</em>
+                <em>Diagrama de flujo que muestra la estructura repetitiva con dos comparaciones por iteración</em>
             </p>
         </div>
 
