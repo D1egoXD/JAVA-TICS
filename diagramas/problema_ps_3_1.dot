@@ -1,26 +1,27 @@
-digraph problema_ps_3_1 {
+digraph SumaNNumeros {
     rankdir=TB;
-    node [shape=box, style=filled];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
 
     // Nodos
-    inicio [label="INICIO", shape=oval, fillcolor=lightgreen];
-    input_n [label="N", shape=parallelogram, fillcolor=lightyellow];
-    init_suma [label="SUMA ← 0", fillcolor=lightblue];
-    init_i [label="I ← 1", fillcolor=lightblue];
-    ciclo [label="I ≤ N", shape=diamond, fillcolor=lightblue];
-    acumular [label="SUMA ← SUMA + I", fillcolor=lightblue];
-    incremento [label="I ← I + 1", fillcolor=lightblue];
-    output [label="SUMA", shape=parallelogram, fillcolor=lightyellow];
-    fin [label="FIN", shape=oval, fillcolor=lightcoral];
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
+    leerN [label="Leer N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    initSuma [label="SUMA ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    ciclo [label="I ≤ N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    acumular [label="SUMA ← SUMA + I", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    incremento [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    escribir [label="Escribir\nSUMA", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
 
     // Conexiones
-    inicio -> input_n;
-    input_n -> init_suma;
-    init_suma -> init_i;
-    init_i -> ciclo;
+    inicio -> leerN;
+    leerN -> initSuma;
+    initSuma -> initI;
+    initI -> ciclo;
     ciclo -> acumular [label="Sí"];
-    ciclo -> output [label="No"];
+    ciclo -> escribir [label="No"];
     acumular -> incremento;
     incremento -> ciclo;
-    output -> fin;
+    escribir -> fin;
 }
