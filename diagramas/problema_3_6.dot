@@ -7,23 +7,24 @@ digraph MayorMenor {
     // Nodo inicial
     start [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
 
-    // Inicialización de variables
-    init [label="MAY ← -100 000\nMEN ← 100 000", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
-
     // Lectura de N
     readN [label="Leer N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
 
-    // Inicialización del contador
-    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
-
-    // Convergencia antes del ciclo
+    // Primer ciclo: Leer números en array
+    initI1 [label="I ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     converge1 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
+    decisionCiclo1 [label="I < N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    readNum [label="Leer\nNUMEROS[I]", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    increment1 [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
-    // Decisión del ciclo
-    decisionCiclo [label="I ≤ N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    // Inicialización de MAY y MEN
+    init [label="MAY ← Integer.MIN_VALUE\nMEN ← Integer.MAX_VALUE", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
-    // Lectura de NUM
-    readNum [label="Leer NUM", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    // Segundo ciclo: Procesar array
+    initI2 [label="I ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    converge2 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
+    decisionCiclo2 [label="I < N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    getNum [label="NUM ← NUMEROS[I]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Primera comparación: NUM > MAY
     decisionMayor [label="NUM > MAY\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
@@ -34,7 +35,7 @@ digraph MayorMenor {
     updateMen [label="MEN ← NUM", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Incremento del contador
-    increment [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    increment2 [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Escritura de resultados
     writeOutput [label="Escribir MAY, MEN", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
@@ -42,30 +43,35 @@ digraph MayorMenor {
     // Nodo final
     end [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
 
-    // Conexiones principales
-    start -> init;
-    init -> readN;
-    readN -> initI;
-    initI -> converge1;
-    converge1 -> decisionCiclo;
+    // Conexiones - Primer ciclo (leer números)
+    start -> readN;
+    readN -> initI1;
+    initI1 -> converge1;
+    converge1 -> decisionCiclo1;
+    decisionCiclo1 -> readNum [label="Si"];
+    decisionCiclo1 -> init [label="No"];
+    readNum -> increment1;
+    increment1 -> converge1;
 
-    // Ciclo principal
-    decisionCiclo -> readNum [label="Si"];
-    decisionCiclo -> writeOutput [label="No"];
+    // Conexiones - Inicialización y segundo ciclo
+    init -> initI2;
+    initI2 -> converge2;
+    converge2 -> decisionCiclo2;
+    decisionCiclo2 -> getNum [label="Si"];
+    decisionCiclo2 -> writeOutput [label="No"];
 
-    // Flujo dentro del ciclo
-    readNum -> decisionMayor;
-
+    // Flujo dentro del segundo ciclo
+    getNum -> decisionMayor;
     decisionMayor -> updateMay [label="Si"];
     decisionMayor -> decisionMenor [label="No"];
     updateMay -> decisionMenor;
 
     decisionMenor -> updateMen [label="Si"];
-    decisionMenor -> increment [label="No"];
-    updateMen -> increment;
+    decisionMenor -> increment2 [label="No"];
+    updateMen -> increment2;
 
-    // Regreso al inicio del ciclo
-    increment -> converge1;
+    // Regreso al inicio del segundo ciclo
+    increment2 -> converge2;
 
     // Final
     writeOutput -> end;
