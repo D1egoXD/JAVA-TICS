@@ -38,7 +38,7 @@ digraph CalculoImpuestos {
     calcPretot [label="PRETOT ← PREBAS + IMP", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Nodo de salida
-    writeOutput [label="Escribir PREBAS, PRETOT", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
+    writeOutput [label="Escribir PREBAS,\nIMP, PRETOT", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
 
     // Nodo final (óvalo rojo/coral)
     end [label="FIN", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
