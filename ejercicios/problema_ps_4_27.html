@@ -3,66 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vector desde Matriz con Reglas - Ejercicios Java</title>
-    <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <title>PS 4.27 - Generación de Vector B desde Matriz A - Ejercicios Java</title>
+    <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
 </head>
 <body>
 <div class="container">
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">PS 4.27</span>
-            <h2>Vector desde Matriz con Reglas</h2>
+            <h2>Generación de Vector B desde Matriz A</h2>
         </div>
 
         <div class="exercise-description">
-            <p>Este ejercicio combina matrices, condicionales y operaciones matemáticas. Practicarás suma de filas, producto de columnas, división con validación y uso de operador módulo para lógica condicional.</p>
+            <p>Desarrolla un programa que genere un vector B desde una matriz cuadrada A aplicando reglas según (I+1) mod 3. El algoritmo valida 1 ≤ N ≤ 50, lee la matriz NxN, y para cada posición I: si (I+1) mod 3 = 1 → B[I] = suma fila I, si = 2 → B[I] = producto columna I, si = 0 → B[I] = (producto columna I-1) / (suma fila I-2) validando división por cero.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer matriz cuadrada A de orden N×N</li>
-                <li>Para cada posición i del vector B (i de 1 a N):
+                <li>Leer N (validar 1 ≤ N ≤ 50)</li>
+                <li>Leer matriz A de NxN con doble ciclo (I de 0 a N-1, J de 0 a N-1)</li>
+                <li>Generar vector B con ciclo I de 0 a N-1:</li>
                 <ul>
-                    <li>Si i % 3 == 1: B[i] = suma de fila i</li>
-                    <li>Si i % 3 == 2: B[i] = producto de columna i</li>
-                    <li>Si i % 3 == 0: B[i] = (producto col i-1) / (suma fila i-2)</li>
-                </ul></li>
-                <li>Validar división por cero en caso i % 3 == 0</li>
-                <li>Mostrar matriz original y vector B generado</li>
-
+                    <li>Si (I+1) mod 3 = 1: B[I] ← suma de elementos en fila I</li>
+                    <li>Si (I+1) mod 3 = 2: B[I] ← producto de elementos en columna I</li>
+                    <li>Si (I+1) mod 3 = 0: B[I] ← (producto columna I-1) / (suma fila I-2), validar división por 0</li>
+                </ul>
+                <li>Mostrar vector B completo</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
-            <pre class="code-block">// Matriz 3x3:
-1 2 3
-4 5 6
-7 8 9
+            <pre class="code-block">// Entrada:
+========================================
+Generación de Vector B desde Matriz A
+========================================
+Ingrese el orden de la matriz (N) [1-50]: 3
 
-// Vector B:
-B[1] = 6 (suma fila 1: 1+2+3)
-B[2] = 80 (producto col 2: 2×5×8)
-B[3] = 13.33 (80 / 6)</pre>
+Ingrese los elementos de la matriz 3x3:
+Fila 1:
+  A[1][1]: 1
+  A[1][2]: 2
+  A[1][3]: 3
+Fila 2:
+  A[2][1]: 4
+  A[2][2]: 5
+  A[2][3]: 6
+Fila 3:
+  A[3][1]: 7
+  A[3][2]: 8
+  A[3][3]: 9
+
+// Salida:
+=========================================
+El vector B generado es:
+[6.0, 80.0, 13.3333]
+
+Detalle de cálculos:
+B[1] = 6.0000    // (1+1) mod 3 = 2 mod 3 = 2 → producto col 0: 1×4×7 = 28... (error en ejemplo)
+                  // Correcto: índice base-0, (0+1) mod 3 = 1 → suma fila 0: 1+2+3 = 6
+B[2] = 80.0000   // (1+1) mod 3 = 2 → producto col 1: 2×5×8 = 80
+B[3] = 13.3333   // (2+1) mod 3 = 0 → 80 / 6 = 13.33
+=========================================</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <p>Detalles importantes:</p>
             <ul>
-                <li>Ajusta índices: problema usa base 1, Java usa base 0</li>
-                <li>Producto de columna puede crecer muy rápido, usa <code>long</code></li>
-                <li>Valida divisor != 0 antes de dividir</li>
-                <li><strong>Tip:</strong> Usa métodos auxiliares para suma y producto</li>
-
+                <li>El código usa índices base-0 pero las reglas se aplican a (I+1) para simular base-1</li>
+                <li>Caso mod 3 = 1: Suma todos los elementos de la fila I</li>
+                <li>Caso mod 3 = 2: Multiplica todos los elementos de la columna I</li>
+                <li>Caso mod 3 = 0: Divide producto de columna (I-1) entre suma de fila (I-2)</li>
+                <li>Usa <code>long</code> para productos (crecen rápido) y <code>double</code> para B (por la división)</li>
+                <li>Valida división por cero: si suma fila = 0, asignar B[I] = 0 y mostrar advertencia</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_4_27.png" alt="Diagrama de Flujo - Vector desde Matriz con Reglas" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_4_27.png?v=20251208" alt="Diagrama de Flujo - Generación de Vector B desde Matriz A" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
                 <em>Diagrama de flujo del algoritmo</em>
