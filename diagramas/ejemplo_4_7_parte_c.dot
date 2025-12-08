@@ -1,31 +1,28 @@
-digraph problema_4_7_parte_3 {
+digraph BusquedaBinaria_Parte_C {
     // Configuración general
     rankdir=TB;
-    node [shape=box, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=10];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
     edge [fontname="Arial", fontsize=9];
 
     // Conectores de entrada
-    conector_c [label="C", shape=hexagon, fillcolor=white];
-    conector_b [label="B", shape=hexagon, fillcolor=white];
+    conectorC [label="C", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    conectorB [label="B", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Nodo de decisión
-    check_ban [label="BAN = 1", shape=diamond, fillcolor=lightblue];
+    checkBan [label="BAN = 0\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
-    // Nodos de salida (mensajes)
-    no_encontrado [label="\"El elemento NO\nestá en el arreglo\"", shape=box, fillcolor=lightyellow];
-    encontrado [label="\"El elemento SI\nestá en el arreglo\"", shape=box, fillcolor=lightyellow];
+    // Nodos de salida
+    msgEncontrado [label="Escribir\n\"El elemento SI\nestá en el arreglo\"", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    msgNoEncontrado [label="Escribir\n\"El elemento NO\nestá en el arreglo\"", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
 
     // Nodo final
-    fin [label="FIN", shape=ellipse, fillcolor=lightcoral];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
 
     // Conexiones
-    conector_c -> check_ban;
-    check_ban -> no_encontrado [label="Si"];
-    check_ban -> encontrado [label="No"];
-    no_encontrado -> fin;
-    encontrado -> fin;
-    conector_b -> fin;
-
-    // Alinear los conectores C y B
-    {rank=same; conector_c; conector_b}
+    conectorC -> checkBan;
+    checkBan -> msgEncontrado [label="Si"];
+    checkBan -> msgNoEncontrado [label="No"];
+    msgEncontrado -> fin;
+    msgNoEncontrado -> fin;
+    conectorB -> fin;
 }

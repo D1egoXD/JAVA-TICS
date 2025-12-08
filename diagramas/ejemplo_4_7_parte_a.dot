@@ -1,55 +1,50 @@
-digraph Flowchart_Styled {
-    // --- Configuración General (del ejemplo) ---
-    graph [
-        rankdir=TB,
-        nodesep=0.5,
-        splines=ortho
-    ];
-    node [shape=box, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=10];
+digraph BusquedaBinaria_Parte_A {
+    // Configuración General
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
     edge [fontname="Arial", fontsize=9];
 
-    // --- Nodos con Estilos Específicos ---
+    // Nodo inicial
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
     
-    // Inicio (Verde)
-    inicio [label="INICIO", shape=ellipse, fillcolor=lightgreen];
+    // Entrada/Salida
+    msgN [label="Escribir\n\"Ingrese número\nde elementos\"", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    leerN [label="Leer N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    msgError [label="Escribir\n\"Error en los datos\"", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    msgDato [label="Escribir\n\"Ingrese el dato\"", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    leerVector [label="Leer VECTOR[I]", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
     
-    // Entrada/Salida (Amarillo)
-    pedir_n [label="\"Ingrese número\nde elementos\"", shape=parallelogram, fillcolor=lightyellow];
-    leer_n [label="N", shape=parallelogram, fillcolor=lightyellow];
-    pedir_dato [label="\"Ingrese el dato\"", shape=parallelogram, fillcolor=lightyellow];
-    leer_vector [label="VECTOR[I]", shape=parallelogram, fillcolor=lightyellow];
+    // Decisión
+    validarN [label="N ≥ 1 y\nN ≤ 50\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    loopCheck [label="I ≤ N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    // Decisión (Cyan)
-    validar_n [label="N ≥ 1 y\nN ≤ 50", shape=diamond, fillcolor=lightcyan];
-    loop_check [label="I ≤ N", shape=diamond, fillcolor=lightcyan];
+    // Proceso
+    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    incrementI [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    // Proceso (Azul - Usan el estilo por defecto)
-    error [label="\"Error en los datos\""]; // No necesita 'shape=box' ni color, ya es el default
-    init_i [label="I ← 1"];
-    incrementar_i [label="I ← I + 1"];
-    
-    // Conectores (Hexágono - Usan el color azul por defecto)
-    conector_a [label="A", shape=hexagon];
-    conector_b [label="B", shape=hexagon];
+    // Conectores
+    conectorA [label="A", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    conectorB [label="B", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
-    // --- Conexiones (se mantienen igual) ---
-    inicio -> pedir_n;
-    pedir_n -> leer_n;
-    leer_n -> validar_n;
+    // Convergencia
+    converge1 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
 
-    validar_n -> init_i [label="Si"];
-    validar_n -> error [label="No"];
+    // Conexiones
+    inicio -> msgN;
+    msgN -> leerN;
+    leerN -> validarN;
 
-    init_i -> loop_check;
-    loop_check -> pedir_dato [label="Si"];
-    loop_check -> conector_a [label="No"];
+    validarN -> initI [label="Si"];
+    validarN -> msgError [label="No"];
 
-    pedir_dato -> leer_vector;
-    leer_vector -> incrementar_i;
-    incrementar_i -> loop_check; // Bucle de regreso
+    initI -> converge1;
+    converge1 -> loopCheck;
+    loopCheck -> msgDato [label="Si"];
+    loopCheck -> conectorA [label="No"];
 
-    error -> conector_b;
+    msgDato -> leerVector;
+    leerVector -> incrementI;
+    incrementI -> converge1;
 
-    // Alinear los conectores A y B
-    {rank=same; conector_a; conector_b}
+    msgError -> conectorB;
 }
