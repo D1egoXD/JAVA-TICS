@@ -1,52 +1,75 @@
 digraph CalculoImpuestos {
     // Configuración general
     rankdir=TB;
-    node [shape=box, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=10];
-    edge [fontname="Arial", fontsize=9];
+    node [shape=box, style=filled, fontname="Arial", fontsize=11];
+    edge [fontname="Arial", fontsize=10, color=black, arrowsize=0.8];
 
-    // Nodo inicial
-    start [label="INICIO", shape=ellipse, fillcolor=lightgreen];
+    // Nodo inicial (óvalo verde)
+    start [label="INICIO", shape=oval, fillcolor="#90EE90", style="filled", width=1.5, height=0.8];
 
-    // Lectura de datos
-    read_prebas [label="Leer PREBAS", shape=parallelogram, fillcolor=lightyellow];
+    // Nodo de entrada - leer PREBAS
+    readPrebas [label="PREBAS", shape=parallelogram, fillcolor="#FFFACD", style="filled", skew=0.3];
 
     // Primera decisión: PREBAS > 500
-    decision1 [label="PREBAS\n> 500?", shape=diamond, fillcolor=lightcyan];
+    decision1 [label="PREBAS\n> 500", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.8];
 
-    // Rama Si (PREBAS > 500)
-    calc_imp_500 [label="IMP ← 20*0.30 +\n(PREBAS-40)*0.50", shape=box, fillcolor=lightblue];
+    // Cálculo IMP para > 500
+    calcImp500 [label="IMP ← 20*0.30 +\n(PREBAS-40)*0.50", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Segunda decisión: PREBAS > 40
-    decision2 [label="PREBAS\n> 40?", shape=diamond, fillcolor=lightcyan];
+    decision2 [label="PREBAS\n> 40", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.8];
 
-    // Rama Si (PREBAS > 40 pero <= 500)
-    calc_imp_40 [label="IMP ← 20*0.30 +\n(PREBAS-40)*0.40", shape=box, fillcolor=lightblue];
+    // Cálculo IMP para > 40
+    calcImp40 [label="IMP ← 20*0.30 +\n(PREBAS-40)*0.40", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
     // Tercera decisión: PREBAS > 20
-    decision3 [label="PREBAS\n> 20?", shape=diamond, fillcolor=lightcyan];
+    decision3 [label="PREBAS\n> 20", shape=diamond, fillcolor="#FFFACD", style="filled", width=1.8];
 
-    // Rama Si (PREBAS > 20 pero <= 40)
-    calc_imp_20 [label="IMP ← (PREBAS-20)\n* 0.30", shape=box, fillcolor=lightblue];
+    // Cálculo IMP para > 20
+    calcImp20 [label="IMP ← (PREBAS-20)\n*0.30", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
-    // Rama No (PREBAS <= 20)
-    calc_imp_0 [label="IMP ← 0", shape=box, fillcolor=lightblue];
+    // Cálculo IMP para <= 20
+    calcImp0 [label="IMP ← 0", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
+
+    // Punto de convergencia
+    convergencia [label="", shape=circle, fillcolor=black, width=0.15, height=0.15];
 
     // Cálculo del precio total
-    calc_pretot [label="PRETOT ← PREBAS + IMP", shape=box, fillcolor=lightblue];
+    calcPretot [label="PRETOT ← PREBAS + IMP", shape=rectangle, fillcolor="#ADD8E6", style="filled"];
 
-    // Escritura de resultados
-    write_output [label="Escribir PREBAS, PRETOT", shape=parallelogram, fillcolor=lightyellow];
+    // Nodo de salida
+    writeOutput [label="PREBAS, PRETOT", shape=egg, fillcolor="#FFFACD", style="filled"];
 
-    // Nodo final
-    end [label="FIN", shape=ellipse, fillcolor=lightcoral];
+    // Nodo final (óvalo rojo/coral)
+    end [label="INICIO", shape=oval, fillcolor="#F08080", style="filled", width=1.5, height=0.8];
 
     // Conexiones
-    start -> read_prebas;
-    read_prebas -> decision1;
+    start -> readPrebas;
+    readPrebas -> decision1;
 
     // Primera decisión
-    decision1 -> calc_imp_500 [label="Sí"];
+    decision1 -> calcImp500 [label="Sí"];
     decision1 -> decision2 [label="No"];
+
+    // Segunda decisión
+    decision2 -> calcImp40 [label="Sí"];
+    decision2 -> decision3 [label="No"];
+
+    // Tercera decisión
+    decision3 -> calcImp20 [label="Sí"];
+    decision3 -> calcImp0 [label="No"];
+
+    // Convergencia de todas las ramas
+    calcImp500 -> convergencia;
+    calcImp40 -> convergencia;
+    calcImp20 -> convergencia;
+    calcImp0 -> convergencia;
+
+    // Continuar después de convergencia
+    convergencia -> calcPretot;
+    calcPretot -> writeOutput;
+    writeOutput -> end;
+}
 
     // Segunda decisión
     decision2 -> calc_imp_40 [label="Sí"];
