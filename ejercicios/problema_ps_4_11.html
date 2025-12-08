@@ -3,59 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Búsqueda y Ordenamiento - Ejercicios Java</title>
-    <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <title>PS 4.11 - Búsqueda de Ciudades - Ejercicios Java</title>
+    <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
 </head>
 <body>
 <div class="container">
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">PS 4.11</span>
-            <h2>Búsqueda y Ordenamiento</h2>
+            <h2>Búsqueda de Ciudades</h2>
         </div>
 
         <div class="exercise-description">
-            <p>Practicarás algoritmos fundamentales de búsqueda y ordenamiento. Aprenderás a implementar búsqueda lineal para encontrar elementos y el algoritmo de ordenamiento burbuja para organizar datos.</p>
+            <p>Desarrolla un programa que busque una ciudad en un arreglo de N ciudades usando búsqueda lineal. El algoritmo valida que 1 ≤ N ≤ 1000, llena el arreglo CIUDADES con un ciclo <code>for (I ← 0; I < N; I ← I + 1)</code>, lee la ciudad CIU a buscar, y ejecuta otro ciclo comparando CIUDADES[I] = CIU (ignorando mayúsculas/minúsculas) hasta encontrarla o terminar el arreglo.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Crear arreglo de N elementos</li>
-                <li>Implementar <code>busquedaLineal(arr, valor)</code> que retorne el índice o -1</li>
-                <li>Implementar <code>ordenamientoBurbuja(arr)</code> para ordenar ascendentemente</li>
-                <li>Usar ciclos anidados para comparar elementos adyacentes</li>
-                <li>Intercambiar elementos si están en orden incorrecto</li>
-                <li>Mostrar arreglo original, ordenado y resultados de búsquedas</li>
-
+                <li>Leer N (validar 1 ≤ N ≤ 1000)</li>
+                <li>Si N no es válido, mostrar error y terminar</li>
+                <li>Crear arreglo CIUDADES de tamaño N</li>
+                <li>Llenar arreglo con ciclo for (I de 0 a N-1)</li>
+                <li>Leer CIU (ciudad a buscar)</li>
+                <li>Buscar con ciclo for: si CIUDADES[I] = CIU entonces ENCONTRADA ← true y salir del ciclo (break)</li>
+                <li>Mostrar si la ciudad se encontró o no</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
-            <pre class="code-block">// Arreglo: [64, 34, 25, 12, 22, 11, 90]
-Buscar 25: Encontrado en índice 2
+            <pre class="code-block">// Entrada:
+========================================
+Búsqueda de Ciudades
+========================================
+Ingrese el número de ciudades (N) [1-1000]: 5
 
-Ordenado: [11, 12, 22, 25, 34, 64, 90]
-Buscar 25: Encontrado en índice 3</pre>
+Ingrese los nombres de las 5 ciudades:
+Ciudad 1: México
+Ciudad 2: Madrid
+Ciudad 3: Buenos Aires
+Ciudad 4: Lima
+Ciudad 5: Bogotá
+
+Ingrese el nombre de la ciudad a buscar: lima
+
+// Salida:
+=========================================
+La ciudad 'lima' SÍ se encuentra en el arreglo.
+=========================================
+
+// Nota: La búsqueda ignora mayúsculas/minúsculas (equalsIgnoreCase)</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <p>Detalles importantes:</p>
             <ul>
-                <li>Búsqueda lineal: O(n), compara elemento por elemento</li>
-                <li>Burbuja: compara pares adyacentes y los intercambia si es necesario</li>
-                <li>Usa variable auxiliar <code>temp</code> para intercambiar valores</li>
-                <li><strong>Tip:</strong> Optimiza burbuja con una bandera para detener si ya está ordenado</li>
-
+                <li>Usa <code>String[]</code> para el arreglo de ciudades</li>
+                <li>La búsqueda lineal tiene complejidad O(N) - revisa cada elemento</li>
+                <li>Usa <code>equalsIgnoreCase()</code> para comparar strings sin importar mayúsculas</li>
+                <li>Usa <code>break</code> para salir del ciclo inmediatamente al encontrar la ciudad</li>
+                <li>Recuerda <code>scanner.nextLine()</code> después de <code>nextInt()</code> para consumir el salto de línea</li>
+                <li>Arreglos en Java empiezan en índice 0 (base-0)</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_4_11.png" alt="Diagrama de Flujo - Búsqueda y Ordenamiento" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_4_11.png?v=20251208" alt="Diagrama de Flujo - Búsqueda de Ciudades" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
                 <em>Diagrama de flujo del algoritmo</em>

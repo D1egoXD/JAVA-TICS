@@ -1,47 +1,79 @@
-digraph problema_ps_4_11 {
+digraph BusquedaCiudades {
     rankdir=TB;
-    node [shape=box, style=rounded];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
     
-    inicio [label="INICIO", shape=ellipse, style=filled, fillcolor=lightgreen];
-    leer_n [label="Leer N"];
+    // Nodos
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
+    leerN [label="Leer N", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
     
-    leer_ciudades [label="Leer CIUDADES[1..N]"];
-    leer_ciu [label="Leer CIU"];
+    // Validación de N
+    validarN [label="1 ≤ N ≤ 1000", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    mensajeError [label="Escribir\n'Error: N debe\nestar entre\n1 y 1000'", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
     
-    iniciar_vars [label="ENCONTRADO ← false\nI ← 1"];
+    // Leer ciudades (ciclo)
+    escribirMensaje1 [label="Escribir\n'Ingrese los nombres\nde las N ciudades'", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    initI1 [label="I ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    decisionI1 [label="I < N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    leerCiudad [label="Leer\nCIUDADES[I]", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    incrementI1 [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    cond_while [label="I ≤ N ∧\n¬ENCONTRADO", shape=diamond, style=filled, fillcolor=lightyellow];
+    // Leer ciudad a buscar
+    escribirMensaje2 [label="Escribir\n'Ingrese la ciudad\na buscar'", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    leerCIU [label="Leer CIU", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
     
-    comparar [label="CIUDADES[I]\n= CIU", shape=diamond, style=filled, fillcolor=lightyellow];
+    // Búsqueda
+    initBusqueda [label="ENCONTRADA ← false", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    initI2 [label="I ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    decisionI2 [label="I < N", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    comparar [label="CIUDADES[I]\n= CIU", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    setEncontrada [label="ENCONTRADA ← true", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    salirBusqueda [label="Salir del ciclo", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    incrementI2 [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
     
-    encontrado_true [label="ENCONTRADO ← true"];
-    incrementar [label="I ← I + 1"];
+    // Resultado
+    decisionResultado [label="ENCONTRADA", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    mensajeSi [label="Escribir\n'La ciudad SÍ\nse encuentra'", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    mensajeNo [label="Escribir\n'La ciudad NO\nse encuentra'", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
     
-    cond_resultado [label="ENCONTRADO", shape=diamond, style=filled, fillcolor=lightyellow];
+    conector [label="", shape=circle, width=0.3, height=0.3, fillcolor="#ADD8E6", color=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
     
-    msg_si [label="Escribir\n'La ciudad SÍ\nse encuentra'"];
-    msg_no [label="Escribir\n'La ciudad NO\nse encuentra'"];
+    // Conexiones
+    inicio -> leerN;
+    leerN -> validarN;
     
-    fin [label="FIN", shape=ellipse, style=filled, fillcolor=lightcoral];
+    validarN -> escribirMensaje1 [label="Sí"];
+    validarN -> mensajeError [label="No"];
     
-    inicio -> leer_n;
-    leer_n -> leer_ciudades;
-    leer_ciudades -> leer_ciu;
-    leer_ciu -> iniciar_vars;
-    iniciar_vars -> cond_while;
+    // Ciclo de lectura
+    escribirMensaje1 -> initI1;
+    initI1 -> decisionI1;
+    decisionI1 -> leerCiudad [label="Sí"];
+    decisionI1 -> escribirMensaje2 [label="No"];
+    leerCiudad -> incrementI1;
+    incrementI1 -> decisionI1;
     
-    cond_while -> comparar [label="Sí"];
-    cond_while -> cond_resultado [label="No"];
+    // Búsqueda
+    escribirMensaje2 -> leerCIU;
+    leerCIU -> initBusqueda;
+    initBusqueda -> initI2;
+    initI2 -> decisionI2;
+    decisionI2 -> comparar [label="Sí"];
+    decisionI2 -> decisionResultado [label="No"];
     
-    comparar -> encontrado_true [label="Sí"];
-    comparar -> incrementar [label="No"];
+    comparar -> setEncontrada [label="Sí"];
+    comparar -> incrementI2 [label="No"];
+    setEncontrada -> salirBusqueda;
+    salirBusqueda -> decisionResultado;
+    incrementI2 -> decisionI2;
     
-    encontrado_true -> cond_while;
-    incrementar -> cond_while;
+    // Resultado
+    decisionResultado -> mensajeSi [label="true"];
+    decisionResultado -> mensajeNo [label="false"];
     
-    cond_resultado -> msg_si [label="true"];
-    cond_resultado -> msg_no [label="false"];
-    
-    msg_si -> fin;
-    msg_no -> fin;
+    mensajeSi -> conector;
+    mensajeNo -> conector;
+    mensajeError -> conector;
+    conector -> fin;
 }
