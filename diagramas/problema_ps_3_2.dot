@@ -1,26 +1,32 @@
-digraph ProblemaPS32 {
+digraph PromedioCalificaciones {
     rankdir=TB;
-    node [shape=box, style=rounded];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
     
     // Nodos
-    inicio [label="INICIO", shape=ellipse, style=filled, fillcolor=lightgreen];
-    init [label="SUMA ← 0\nCONTADOR ← 0", style=filled, fillcolor=lightblue];
-    leer1 [label="Leer CAL", shape=parallelogram, style=filled, fillcolor=lightyellow];
-    decision [label="CAL ≠ -1?", shape=diamond, style=filled, fillcolor=lightblue];
-    suma [label="SUMA ← SUMA + CAL\nCONTADOR ← CONTADOR + 1", style=filled, fillcolor=lightblue];
-    leer2 [label="Leer CAL", shape=parallelogram, style=filled, fillcolor=lightyellow];
-    calcular [label="PROMEDIO ← SUMA / CONTADOR", style=filled, fillcolor=lightblue];
-    imprimir [label="Imprimir PROMEDIO", shape=parallelogram, style=filled, fillcolor=lightyellow];
-    fin [label="FIN", shape=ellipse, style=filled, fillcolor=lightcoral];
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
+    init [label="SUMA ← 0\nCONTADOR ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    leerCal [label="Leer CAL", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    decision [label="CAL ≠ -1", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    acumular [label="SUMA ← SUMA + CAL\nCONTADOR ← CONTADOR + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    leerCal2 [label="Leer CAL", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    validar [label="CONTADOR > 0", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    calcular [label="PROMEDIO ← SUMA / CONTADOR", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    promedioCero [label="PROMEDIO ← 0.0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    escribir [label="Escribir\nPROMEDIO", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
     
     // Conexiones
     inicio -> init;
-    init -> leer1;
-    leer1 -> decision;
-    decision -> suma [label="Verdadero"];
-    decision -> calcular [label="Falso"];
-    suma -> leer2;
-    leer2 -> decision;
-    calcular -> imprimir;
-    imprimir -> fin;
+    init -> leerCal;
+    leerCal -> decision;
+    decision -> acumular [label="Sí"];
+    decision -> validar [label="No"];
+    acumular -> leerCal2;
+    leerCal2 -> decision;
+    validar -> calcular [label="Sí"];
+    validar -> promedioCero [label="No"];
+    calcular -> escribir;
+    promedioCero -> escribir;
+    escribir -> fin;
 }

@@ -3,61 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promedio de N Calificaciones - Ejercicios Java</title>
-    <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <title>PS 3.2 - Promedio de Calificaciones - Ejercicios Java</title>
+    <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
 </head>
 <body>
 <div class="container">
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">PS 3.2</span>
-            <h2>Promedio de N Calificaciones</h2>
+            <h2>Promedio de Calificaciones</h2>
         </div>
 
         <div class="exercise-description">
-            <p>Practicarás el uso de ciclos para procesar cantidades variables de datos. Aprenderás a acumular valores, contar elementos procesados y calcular promedios de conjuntos dinámicos usando programación estructurada.</p>
+            <p>Desarrolla un programa que calcule el promedio de calificaciones usando un ciclo centinela. El algoritmo inicializa SUMA ← 0 y CONTADOR ← 0, lee calificaciones mientras CAL ≠ -1, acumula SUMA ← SUMA + CAL y CONTADOR ← CONTADOR + 1, y finalmente calcula PROMEDIO ← SUMA / CONTADOR (validando CONTADOR > 0).</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer cantidad N de calificaciones a ingresar</li>
-                <li>Inicializar <code>suma = 0</code></li>
-                <li>Usar ciclo para leer N calificaciones y acumularlas</li>
-                <li>Calcular promedio: <code>suma / N</code></li>
-                <li>Mostrar el promedio con 2 decimales</li>
-
+                <li>Inicializar SUMA ← 0 y CONTADOR ← 0</li>
+                <li>Leer CAL (primera calificación)</li>
+                <li>Ejecutar ciclo mientras CAL ≠ -1: SUMA ← SUMA + CAL, CONTADOR ← CONTADOR + 1, leer siguiente CAL</li>
+                <li>Validar si CONTADOR > 0, entonces PROMEDIO ← SUMA / CONTADOR, sino PROMEDIO ← 0.0</li>
+                <li>Mostrar PROMEDIO</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
-Cantidad de calificaciones: 4
-Calificaciones: 85 90 78 92
+========================================
+Cálculo de Promedio de Calificaciones
+========================================
+Ingrese las calificaciones (ingrese -1 para terminar):
+Calificación: 85
+Calificación: 90
+Calificación: 78
+Calificación: 92
+Calificación: -1
 
 // Salida:
-======================================
-Promedio: 86.25
-======================================</pre>
+========================================
+El promedio de calificaciones es: 86.25
+========================================</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <p>Detalles importantes:</p>
             <ul>
-                <li>Usa <code>double</code> para la suma y promedio</li>
-                <li>Divide entre <code>(double)N</code> para evitar división entera</li>
-                <li>Valida que N sea mayor a 0 antes de dividir</li>
-                <li><strong>Tip:</strong> Muestra las calificaciones ingresadas para confirmar</li>
-
+                <li>Usa <code>-1</code> como valor centinela para terminar la entrada</li>
+                <li>Lee la primera calificación <strong>antes</strong> del ciclo while</li>
+                <li>El ciclo continúa mientras <code>cal != -1</code></li>
+                <li>Valida <code>contador > 0</code> antes de dividir para evitar división por cero</li>
+                <li>Usa <code>double</code> para suma y promedio para mantener decimales</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_3_2.png" alt="Diagrama de Flujo - Promedio de N Calificaciones" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_3_2.png?v=20251208" alt="Diagrama de Flujo - Promedio de Calificaciones" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
                 <em>Diagrama de flujo del algoritmo</em>
