@@ -36,6 +36,13 @@
             </ul>
         </div>
 
+        <div class="notes-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: var(--border-radius-md); margin: 20px 0;">
+            <h3 style="color: white; margin-top: 0;">Tip</h3>
+            <p style="color: white; margin: 0; line-height: 1.6;">
+                Para generar el vector B desde la matriz A, analiza cada columna (I) calculando su módulo 3. Si mod=0 suma elementos, si mod=1 calcula promedio, si mod=2 multiplica. Usa ciclos anidados: externo para columnas, interno para filas. Inicializa correctamente los acumuladores según la operación (0 para suma, 1 para multiplicación).
+            </p>
+        </div>
+
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
