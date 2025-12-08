@@ -11,58 +11,106 @@
     <div class="exercise-card">
         <div class="exercise-header">
             <span class="exercise-badge">Problema 4.22</span>
-            <h2>Gestión de Inventario</h2>
+            <h2>Gestión de Inventario con Arreglos Paralelos</h2>
         </div>
 
         <div class="exercise-description">
-            <p>Practicarás operaciones de gestión de datos en Java. Aprenderás a manejar múltiples arreglos relacionados (paralelos), realizar búsquedas, actualizaciones y mantener la integridad de la información en estructuras de datos relacionadas.</p>
+            <p>Construir un programa de gestión de inventario que trabaje con arreglos paralelos para almacenar información de productos. El programa debe realizar tres operaciones: encontrar el producto con mayor existencia, generar lista de productos a pedir al proveedor, y eliminar productos con existencia cero.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Crear arreglos paralelos: <code>nombres[]</code>, <code>cantidades[]</code>, <code>precios[]</code></li>
-                <li>Implementar funcionalidad para agregar productos</li>
-                <li>Implementar búsqueda de productos por nombre</li>
-                <li>Actualizar cantidad de un producto existente</li>
-                <li>Calcular valor total del inventario</li>
-                <li>Mostrar listado completo del inventario</li>
-
+                <li>Validar que N esté en el rango [1, 100]</li>
+                <li>Crear dos arreglos paralelos: <code>PRO[]</code> (claves) y <code>CAN[]</code> (existencias)</li>
+                <li><strong>MAYOR:</strong> Encontrar el producto con mayor existencia
+                    <ul>
+                        <li>Inicializar <code>MCA ← CAN[0]</code>, <code>MPR ← PRO[0]</code></li>
+                        <li>Recorrer desde I = 1 hasta N-1</li>
+                        <li>Si <code>CAN[I] > MCA</code>: actualizar MCA y MPR</li>
+                        <li>Mostrar la clave del producto con mayor existencia</li>
+                    </ul>
+                </li>
+                <li><strong>PEDIDO:</strong> Listar productos a pedir al proveedor
+                    <ul>
+                        <li>Recorrer todos los productos</li>
+                        <li>Si <code>CAN[I] ≥ 1 y CAN[I] < 50</code>: mostrar clave y cantidad a pedir (50 - CAN[I])</li>
+                    </ul>
+                </li>
+                <li><strong>ELIMINAR:</strong> Eliminar productos con existencia cero
+                    <ul>
+                        <li>Recorrer el arreglo</li>
+                        <li>Si <code>CAN[I] = 0</code>: desplazar elementos y decrementar N</li>
+                        <li>Mostrar inventario actualizado</li>
+                    </ul>
+                </li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
-            <pre class="code-block">// Operaciones:
-1. Agregar: Laptop, 10, 15000.0
-2. Agregar: Mouse, 50, 250.0
-3. Buscar: Laptop -> Encontrado (10 unidades)
-4. Valor total: $162500.0
+            <pre class="code-block">// Entrada:
+Ingrese el número de productos: 5
+Producto 1 - Clave: 101 - Existencia: 75
+Producto 2 - Clave: 102 - Existencia: 0
+Producto 3 - Clave: 103 - Existencia: 25
+Producto 4 - Clave: 104 - Existencia: 150
+Producto 5 - Clave: 105 - Existencia: 10
 
-// Salida inventario:
-1. Laptop - 10 unid. - $15000.0 c/u
-2. Mouse - 50 unid. - $250.0 c/u</pre>
+// Salida MAYOR:
+La clave del producto con mayor existencia es: 104
+Existencia: 150 cajas
+
+// Salida PEDIDO:
+Clave: 103 - Pedir: 25 cajas
+Clave: 105 - Pedir: 40 cajas
+
+// Salida ELIMINAR:
+Productos restantes: 4
+Clave: 101 - Existencia: 75
+Clave: 103 - Existencia: 25
+Clave: 104 - Existencia: 150
+Clave: 105 - Existencia: 10</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
             <p>Asegúrate de:</p>
             <ul>
-                <li>Los arreglos paralelos usan el mismo índice para datos relacionados</li>
-                <li>Usa <code>String.equals()</code> para comparar nombres</li>
-                <li>Valida que no se exceda la capacidad del arreglo</li>
-                <li><strong>Tip:</strong> Considera usar <code>ArrayList</code> para tamaño dinámico</li>
-
+                <li>Los arreglos paralelos mantienen la relación: PRO[i] tiene existencia CAN[i]</li>
+                <li>Al eliminar elementos, desplazar todos los siguientes a la izquierda</li>
+                <li>Decrementar N después de eliminar para mantener el tamaño correcto</li>
+                <li>En Java, usar índices base 0 (ajustar del algoritmo base 1)</li>
+                <li><strong>Tip:</strong> Al eliminar, no incrementar I para verificar el elemento desplazado</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
+            <p style="text-align: center; margin-bottom: 15px;">El diagrama está dividido en cuatro partes:</p>
+            
+            <h4 style="margin-top: 20px;">Parte A: Validación y Lectura de Datos</h4>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_4_22.png" alt="Diagrama de Flujo - Gestión de Inventario" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_4_22_parte_a.png?v=20251207" alt="Diagrama Parte A - Lectura" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
-            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
-                <em>Diagrama de flujo del algoritmo</em>
+            
+            <h4 style="margin-top: 30px;">Parte B: MAYOR - Producto con Mayor Existencia</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_4_22_parte_b.png?v=20251207" alt="Diagrama Parte B - Mayor" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+            </div>
+            
+            <h4 style="margin-top: 30px;">Parte C: PEDIDO - Productos a Solicitar</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_4_22_parte_c.png?v=20251207" alt="Diagrama Parte C - Pedido" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+            </div>
+            
+            <h4 style="margin-top: 30px;">Parte D: ELIMINAR - Remover Existencias Cero</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_4_22_parte_d.png?v=20251207" alt="Diagrama Parte D - Eliminar" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+            </div>
+            
+            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem; margin-top: 20px;">
+                <em>Diagrama de flujo completo del sistema de gestión de inventario</em>
             </p>
         </div>
 

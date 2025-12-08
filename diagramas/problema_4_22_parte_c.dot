@@ -1,23 +1,26 @@
-digraph problema_4_22_parte_c {
+digraph Inventario_Parte_C {
     rankdir=TB;
-    node [shape=box, style=filled];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
 
     // Nodos
-    conector_pedido [label="PEDIDO", shape=pentagon, fillcolor=white];
-    asignar_i [label="I ← 1", fillcolor=lightblue];
-    ciclo [label="I ≤ N", shape=diamond, fillcolor=lightblue];
-    condicion [label="CAN[I] ≥ 1\ny\nCAN[I] < 50", shape=diamond, fillcolor=lightblue];
-    imprimir [label="PRO[I], 50 - CAN[I]", fillcolor=lightyellow];
-    incremento [label="I ← I + 1", fillcolor=lightblue];
-    fin [label="FIN", shape=oval, fillcolor=lightcoral];
+    conectorPedido [label="PEDIDO", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    initI [label="I ← 0", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    converge1 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
+    ciclo [label="I < N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    condicion [label="CAN[I] ≥ 1 y\nCAN[I] < 50\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    imprimir [label="Escribir\nPRO[I],\n50 - CAN[I]", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    incremento [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    conectorEliminar [label="ELIMINAR", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Conexiones
-    conector_pedido -> asignar_i;
-    asignar_i -> ciclo;
-    ciclo -> condicion [label="Sí"];
-    ciclo -> fin [label="No"];
-    condicion -> imprimir [label="Sí"];
+    conectorPedido -> initI;
+    initI -> converge1;
+    converge1 -> ciclo;
+    ciclo -> condicion [label="Si"];
+    ciclo -> conectorEliminar [label="No"];
+    condicion -> imprimir [label="Si"];
     condicion -> incremento [label="No"];
     imprimir -> incremento;
-    incremento -> ciclo;
+    incremento -> converge1;
 }

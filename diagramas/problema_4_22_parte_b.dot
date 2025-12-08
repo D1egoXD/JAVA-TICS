@@ -1,27 +1,30 @@
-digraph problema_4_22_parte_b {
+digraph Inventario_Parte_B {
     rankdir=TB;
-    node [shape=box, style=filled];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
 
     // Nodos
-    conector_mayor [label="MAYOR", shape=pentagon, fillcolor=white];
-    inicializar [label="MCA ← CAN[1]\nMPR ← PRO[1]", fillcolor=lightblue];
-    asignar_i [label="I ← 2", fillcolor=lightblue];
-    ciclo [label="I ≤ N", shape=diamond, fillcolor=lightblue];
-    comparacion [label="MCA < CAN[I]", shape=diamond, fillcolor=lightblue];
-    actualizar [label="MCA ← CAN[I]\nMPR ← PRO[I]", fillcolor=lightblue];
-    incremento [label="I ← I + 1", fillcolor=lightblue];
-    mensaje [label="\"La clave del producto que tiene la\nmayor existencia es\", MPR", fillcolor=lightyellow];
-    fin [label="FIN", shape=oval, fillcolor=lightcoral];
+    conectorMayor [label="MAYOR", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    inicializar [label="MCA ← CAN[0]\nMPR ← PRO[0]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    initI [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    converge1 [label="", shape=circle, width=0.2, height=0.2, fillcolor=black, color=black];
+    ciclo [label="I < N\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    comparacion [label="MCA < CAN[I]\n?", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    actualizar [label="MCA ← CAN[I]\nMPR ← PRO[I]", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    incremento [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    msgMayor [label="Escribir\n\"La clave del producto\ncon mayor existencia es\",\nMPR", shape=egg, fillcolor="#FFFACD", color=black, fontcolor=black];
+    conectorPedido [label="PEDIDO", shape=pentagon, fillcolor="#ADD8E6", color=black, fontcolor=black];
 
     // Conexiones
-    conector_mayor -> inicializar;
-    inicializar -> asignar_i;
-    asignar_i -> ciclo;
-    ciclo -> comparacion [label="Sí"];
-    ciclo -> mensaje [label="No"];
-    comparacion -> actualizar [label="Sí"];
+    conectorMayor -> inicializar;
+    inicializar -> initI;
+    initI -> converge1;
+    converge1 -> ciclo;
+    ciclo -> comparacion [label="Si"];
+    ciclo -> msgMayor [label="No"];
+    comparacion -> actualizar [label="Si"];
     comparacion -> incremento [label="No"];
     actualizar -> incremento;
-    incremento -> ciclo;
-    mensaje -> fin;
+    incremento -> converge1;
+    msgMayor -> conectorPedido;
 }
