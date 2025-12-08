@@ -72,11 +72,10 @@ La ciudad 'lima' SÍ se encuentra en el arreglo.
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_4_11.png?v=20251208" alt="Diagrama de Flujo - Búsqueda de Ciudades" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <button class="diagram-button" onclick="openModal()">
+                    📊 Ver Diagrama de Flujo
+                </button>
             </div>
-            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
-                <em>Diagrama de flujo del algoritmo</em>
-            </p>
         </div>
 
         <div class="page-footer">
@@ -85,6 +84,46 @@ La ciudad 'lima' SÍ se encuentra en el arreglo.
     </div>
 
 </div>
+
+<!-- Modal para el diagrama -->
+<div id="diagramModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📊 Diagrama de Flujo - Búsqueda de Ciudades</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <img src="../images/problema_ps_4_11.png?v=20251208" alt="Diagrama de Flujo - Búsqueda de Ciudades">
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal() {
+    document.getElementById('diagramModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('diagramModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById('diagramModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+</script>
 
 </body>
 </html>

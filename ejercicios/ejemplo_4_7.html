@@ -75,25 +75,11 @@ El elemento NO está en el arreglo
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <p style="text-align: center; margin-bottom: 15px;">El diagrama está dividido en tres partes:</p>
-            
-            <h4 style="margin-top: 20px;">Parte A: Validación y Lectura del Arreglo</h4>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/ejemplo_4_7_parte_a.png?v=20251207" alt="Diagrama Parte A - Lectura" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <button class="diagram-button" onclick="openModal()">
+                    📊 Ver Diagramas de Flujo
+                </button>
             </div>
-            
-            <h4 style="margin-top: 30px;">Parte B: Búsqueda Binaria</h4>
-            <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/ejemplo_4_7_parte_b.png?v=20251207" alt="Diagrama Parte B - Búsqueda" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
-            </div>
-            
-            <h4 style="margin-top: 30px;">Parte C: Mostrar Resultado</h4>
-            <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/ejemplo_4_7_parte_c.png?v=20251207" alt="Diagrama Parte C - Resultado" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
-            </div>
-            
-            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem; margin-top: 20px;">
-                <em>Diagrama de flujo completo del algoritmo de búsqueda binaria</em>
-            </p>
         </div>
 
         <div class="page-footer">
@@ -102,6 +88,59 @@ El elemento NO está en el arreglo
     </div>
 
 </div>
+
+<!-- Modal para los diagramas -->
+<div id="diagramModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📊 Diagramas de Flujo - Búsqueda Binaria</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h4 style="margin-top: 20px;">Parte A: Validación y Lectura del Arreglo</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/ejemplo_4_7_parte_a.png?v=20251207" alt="Diagrama Parte A - Lectura">
+            </div>
+            
+            <h4 style="margin-top: 30px;">Parte B: Búsqueda Binaria</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/ejemplo_4_7_parte_b.png?v=20251207" alt="Diagrama Parte B - Búsqueda">
+            </div>
+            
+            <h4 style="margin-top: 30px;">Parte C: Mostrar Resultado</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/ejemplo_4_7_parte_c.png?v=20251207" alt="Diagrama Parte C - Resultado">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal() {
+    document.getElementById('diagramModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('diagramModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById('diagramModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+</script>
 
 </body>
 </html>

@@ -63,11 +63,10 @@ El promedio de calificaciones es: 86.25
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_3_2.png?v=20251208" alt="Diagrama de Flujo - Promedio de Calificaciones" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <button class="diagram-button" onclick="openModal()">
+                    📊 Ver Diagrama de Flujo
+                </button>
             </div>
-            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
-                <em>Diagrama de flujo del algoritmo</em>
-            </p>
         </div>
 
         <div class="page-footer">
@@ -76,6 +75,46 @@ El promedio de calificaciones es: 86.25
     </div>
 
 </div>
+
+<!-- Modal para el diagrama -->
+<div id="diagramModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📊 Diagrama de Flujo - Promedio de Calificaciones</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <img src="../images/problema_ps_3_2.png?v=20251208" alt="Diagrama de Flujo - Promedio de Calificaciones">
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal() {
+    document.getElementById('diagramModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('diagramModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById('diagramModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+</script>
 
 </body>
 </html>

@@ -88,30 +88,11 @@ Clave: 105 - Existencia: 10</pre>
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <p style="text-align: center; margin-bottom: 15px;">El diagrama está dividido en cuatro partes:</p>
-            
-            <h4 style="margin-top: 20px;">Parte A: Validación y Lectura de Datos</h4>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_4_22_parte_a.png?v=20251207" alt="Diagrama Parte A - Lectura" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <button class="diagram-button" onclick="openModal()">
+                    📊 Ver Diagramas de Flujo
+                </button>
             </div>
-            
-            <h4 style="margin-top: 30px;">Parte B: MAYOR - Producto con Mayor Existencia</h4>
-            <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_4_22_parte_b.png?v=20251207" alt="Diagrama Parte B - Mayor" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
-            </div>
-            
-            <h4 style="margin-top: 30px;">Parte C: PEDIDO - Productos a Solicitar</h4>
-            <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_4_22_parte_c.png?v=20251207" alt="Diagrama Parte C - Pedido" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
-            </div>
-            
-            <h4 style="margin-top: 30px;">Parte D: ELIMINAR - Remover Existencias Cero</h4>
-            <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_4_22_parte_d.png?v=20251207" alt="Diagrama Parte D - Eliminar" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
-            </div>
-            
-            <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem; margin-top: 20px;">
-                <em>Diagrama de flujo completo del sistema de gestión de inventario</em>
-            </p>
         </div>
 
         <div class="page-footer">
@@ -120,6 +101,64 @@ Clave: 105 - Existencia: 10</pre>
     </div>
 
 </div>
+
+<!-- Modal para los diagramas -->
+<div id="diagramModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📊 Diagramas de Flujo - Sistema de Gestión de Inventario</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h4 style="margin-top: 20px;">Parte A: Validación y Lectura de Datos</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_4_22_parte_a.png?v=20251207" alt="Diagrama Parte A - Lectura">
+            </div>
+            
+            <h4 style="margin-top: 30px;">Parte B: MAYOR - Producto con Mayor Existencia</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_4_22_parte_b.png?v=20251207" alt="Diagrama Parte B - Mayor">
+            </div>
+            
+            <h4 style="margin-top: 30px;">Parte C: PEDIDO - Productos a Solicitar</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_4_22_parte_c.png?v=20251207" alt="Diagrama Parte C - Pedido">
+            </div>
+            
+            <h4 style="margin-top: 30px;">Parte D: ELIMINAR - Remover Existencias Cero</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../images/problema_4_22_parte_d.png?v=20251207" alt="Diagrama Parte D - Eliminar">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal() {
+    document.getElementById('diagramModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('diagramModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById('diagramModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+</script>
 
 </body>
 </html>
