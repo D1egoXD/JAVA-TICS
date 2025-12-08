@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PS 3.39 - Función F(X, Y, Z) con Factoriales - Ejercicios Java</title>
     <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 <div class="container">
@@ -16,6 +18,22 @@
 
         <div class="exercise-description">
             <p>Desarrolla un programa que evalúe K veces la función F(X, Y, Z) definida por casos: si X > 0 ∧ Y > 0 ∧ Z > 0 entonces F = Z!/Y!, si solo X > 0 entonces F = X!, en cualquier otro caso F = 1. El algoritmo lee K, ejecuta un ciclo (I ← 1 hasta I ≤ K), lee X, Y, Z en cada iteración, evalúa las condiciones anidadas y calcula el resultado correspondiente.</p>
+        </div>
+
+        <div class="formula-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h3 style="color: white; text-align: center; margin-bottom: 20px; font-size: 1.4rem;">📐 Fórmula de la Función F(X, Y, Z)</h3>
+            <div style="background: white; padding: 25px; border-radius: 8px; text-align: center;">
+                $$
+                F(X, Y, Z) = \begin{cases}
+                \displaystyle\frac{Z!}{Y!} & \text{si } X > 0 \land Y > 0 \land Z > 0 \\[12pt]
+                X! & \text{si } X > 0 \\[12pt]
+                1 & \text{en cualquier otro caso}
+                \end{cases}
+                $$
+            </div>
+            <p style="color: white; text-align: center; margin-top: 15px; font-size: 0.95rem; opacity: 0.9;">
+                <em>Donde el factorial se define como: \(n! = \prod_{i=1}^{n} i\) para \(n > 0\)</em>
+            </p>
         </div>
 
         <div class="requirements-list">
