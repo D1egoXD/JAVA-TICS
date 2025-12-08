@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla de Multiplicar - Ejercicios Java</title>
-    <link rel="stylesheet" href="../Styles/exercises-new.css">
+    <title>PS 3.4 - Tabla de Multiplicar - Ejercicios Java</title>
+    <link rel="stylesheet" href="../Styles/exercises-new.css?v=20251208">
 </head>
 <body>
 <div class="container">
@@ -15,51 +15,60 @@
         </div>
 
         <div class="exercise-description">
-            <p>Aprenderás a generar secuencias calculadas usando ciclos. Practicarás ciclos simples, operaciones aritméticas repetitivas y la presentación formateada de resultados tabulares.</p>
+            <p>Desarrolla un programa que genere la tabla de multiplicar de un número K. El algoritmo lee K, inicializa I ← 1, y mediante un ciclo <code>for (I ← 1; I ≤ 10; I ← I + 1)</code> calcula RESULTADO ← K × I y muestra cada línea de la tabla.</p>
         </div>
 
         <div class="requirements-list">
             <h3>Requisitos</h3>
             <ul>
-                <li>Leer el número base para la tabla</li>
-                <li>Usar ciclo <code>for</code> desde i=1 hasta i<=10</li>
-                <li>En cada iteración calcular: <code>resultado = numero * i</code></li>
-                <li>Mostrar cada operación: <code>numero x i = resultado</code></li>
-                <li>Formatear la salida de forma tabular</li>
-
+                <li>Leer K (número base de la tabla)</li>
+                <li>Inicializar I ← 1</li>
+                <li>Ejecutar ciclo mientras I ≤ 10: RESULTADO ← K × I, escribir K, I y RESULTADO, luego I ← I + 1</li>
+                <li>Mostrar la tabla completa del 1 al 10</li>
             </ul>
         </div>
 
         <div class="example-section">
             <h3>Ejemplo de uso esperado</h3>
             <pre class="code-block">// Entrada:
-Número: 7
+========================================
+Generador de Tabla de Multiplicar
+========================================
+Ingrese el número K: 7
 
 // Salida:
-Tabla del 7:
-7 x 1 = 7
-7 x 2 = 14
-7 x 3 = 21
-...
-7 x 10 = 70</pre>
+========================================
+Tabla de multiplicar del 7
+========================================
+7 × 1 = 7
+7 × 2 = 14
+7 × 3 = 21
+7 × 4 = 28
+7 × 5 = 35
+7 × 6 = 42
+7 × 7 = 49
+7 × 8 = 56
+7 × 9 = 63
+7 × 10 = 70
+========================================</pre>
         </div>
 
         <div class="notes-section">
             <h3>Notas rápidas</h3>
-            <p>Asegúrate de:</p>
+            <p>Detalles importantes:</p>
             <ul>
-                <li>Usa <code>printf</code> para alinear columnas</li>
-                <li>Puedes generar tablas hasta cualquier límite, no solo 10</li>
-                <li>Considera números negativos en las pruebas</li>
-                <li><strong>Tip:</strong> Usa <code>printf(&quot;%d x %2d = %3d%n&quot;, ...)</code></li>
-
+                <li>El ciclo siempre va de 1 a 10 (fijo)</li>
+                <li>En cada iteración: RESULTADO ← K × I</li>
+                <li>Usa <code>printf("%d × %d = %d%n", k, i, resultado)</code> para formato</li>
+                <li>Funciona con números negativos también</li>
+                <li>Puedes modificar el límite superior (10) si lo necesitas</li>
             </ul>
         </div>
 
         <div class="requirements-list">
             <h3>📊 Diagrama de Flujo</h3>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="../images/problema_ps_3_4.png" alt="Diagrama de Flujo - Tabla de Multiplicar" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
+                <img src="../images/problema_ps_3_4.png?v=20251208" alt="Diagrama de Flujo - Tabla de Multiplicar" style="max-width: 100%; height: auto; border-radius: var(--border-radius-md);">
             </div>
             <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem;">
                 <em>Diagrama de flujo del algoritmo</em>

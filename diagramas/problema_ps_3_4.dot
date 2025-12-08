@@ -1,24 +1,25 @@
-digraph ProblemaPS34 {
+digraph TablaMultiplicar {
     rankdir=TB;
-    node [shape=box, style=rounded];
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
     
     // Nodos
-    inicio [label="INICIO", shape=ellipse, style=filled, fillcolor=lightgreen];
-    leerK [label="Leer K", shape=parallelogram, style=filled, fillcolor=lightyellow];
-    init [label="I ← 1", style=filled, fillcolor=lightblue];
-    decision [label="I ≤ 10?", shape=diamond, style=filled, fillcolor=lightblue];
-    calcular [label="RESULTADO ← K × I", style=filled, fillcolor=lightblue];
-    imprimir [label="Imprimir K, \"×\", I, \"=\", RESULTADO", shape=parallelogram, style=filled, fillcolor=lightyellow];
-    incrementar [label="I ← I + 1", style=filled, fillcolor=lightblue];
-    fin [label="FIN", shape=ellipse, style=filled, fillcolor=lightcoral];
+    inicio [label="INICIO", shape=oval, fillcolor="#90EE90", color=black, fontcolor=black];
+    leerK [label="Leer K", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    init [label="I ← 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    decision [label="I ≤ 10", shape=diamond, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    calcular [label="RESULTADO ← K × I", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    escribir [label="Escribir\nK, I, RESULTADO", shape=parallelogram, fillcolor="#FFFACD", color=black, fontcolor=black];
+    incrementar [label="I ← I + 1", shape=box, fillcolor="#ADD8E6", color=black, fontcolor=black];
+    fin [label="FIN", shape=oval, fillcolor="#F08080", color=black, fontcolor=black];
     
     // Conexiones
     inicio -> leerK;
     leerK -> init;
     init -> decision;
-    decision -> calcular [label="Verdadero"];
-    decision -> fin [label="Falso"];
-    calcular -> imprimir;
-    imprimir -> incrementar;
+    decision -> calcular [label="Sí"];
+    decision -> fin [label="No"];
+    calcular -> escribir;
+    escribir -> incrementar;
     incrementar -> decision;
 }
